@@ -1,11 +1,6 @@
 ---
-import {
-	getLangFromUrl,
-	useTranslations,
-	getLocalizedPath,
-} from "@/i18n/utils";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import { Image } from "astro:assets";
-import logo from "../assets/logo.webp";
 import marfcodizzato from "../assets/marfcode/marfcodizzato.webp";
 
 interface Props {
@@ -18,372 +13,35 @@ const lang = propLang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<footer>
-	<!-- First Row: Info & Form -->
-	<div
-		class="w-full px-4 sm:px-6 md:px-12 lg:px-24 py-12 sm:py-20 min-h-[400px] bg-slate-100"
-	>
-		<div
-			class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start lg:items-center max-w-7xl mx-auto"
-		>
-			<!-- Left Column: Branding & Info -->
-			<div
-				class="space-y-6 flex flex-col items-center text-center font-semibold lg:items-center lg:text-center"
-			>
-				<Image
-					src={logo}
-					alt={t("home.seo.title")}
-					class="w-20 sm:w-24 h-auto mb-4"
-					width={120}
-					height={118}
-					widths={[96, 120, 192]}
-					sizes="(max-width: 639px) 96px, 120px"
-				/>
-
-				<div class="space-y-3">
-					<div
-						class="flex flex-row leading-none overflow-hidden uppercase font-bold tracking-tighter text-2xl mb-4"
-					>
-						<span class="text-slate-900 whitespace-nowrap"
-							>Artigiani del</span
-						>
-						<span class="text-[#d9b130] ml-2 whitespace-nowrap"
-							>Salotto</span
-						>
-					</div>
-
-					<!-- Indirizzo -->
-					<div>
-						<p class="text-slate-600 text-base sm:text-md">
-							{t("footer.address")},<br />{t("footer.city")}
-						</p>
-					</div>
-
-					<!-- Telefono -->
-					<div
-						class="text-slate-900 text-base sm:text-md flex flex-row flex-wrap gap-4 sm:gap-6 justify-center"
-					>
-						<a
-							href="tel:+39000000000"
-							class="hover:text-[#d9b130] transition-colors flex items-center gap-2 justify-center"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="w-5 h-5 opacity-80"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><path
-									d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-								></path></svg
-							>
-							<span>{t("footer.phoneFixed")}</span>
-						</a>
-					</div>
-
-					<!-- Email -->
-					<div
-						class="text-slate-900 text-base sm:text-md flex flex-row flex-wrap gap-4 sm:gap-6 justify-center"
-					>
-						<a
-							href="mailto:info@artigianidelsalotto.it"
-							class="hover:text-[#d9b130] transition-colors flex items-center gap-2 justify-center"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="w-5 h-5 opacity-80"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<rect width="20" height="16" x="2" y="4" rx="2"
-								></rect><path
-									d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-								></path>
-							</svg>
-							<span>info@artigianidelsalotto.it</span>
-						</a>
-					</div>
-
-					<!-- Orari di Apertura -->
-					<div class="pt-4 w-full">
-						<div
-							class="bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 transition-all"
-						>
-							<h3
-								class="font-bold mb-4 text-slate-900 text-center uppercase tracking-widest text-xs opacity-60"
-							>
-								{t("footer.openingHours.title")}
-							</h3>
-							<div class="space-y-3 text-center">
-								<div
-									class="flex flex-col justify-center items-center gap-1 text-slate-800"
-								>
-									<span class="text-sm">
-										{t("footer.hours")}
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Right Column: Contact Form -->
-			<div class="relative p-0 w-full" id="booking-form-container">
-				<h2
-					class="text-2xl sm:text-3xl text-slate-900 mb-6 sm:mb-8 font-bold"
-				>
-					{t("footer.form.title")}
-				</h2>
-
-				<!-- Success/Error Message -->
-				<div
-					id="form-message"
-					class="hidden mb-4 p-4 text-white text-sm sm:text-base rounded"
-				>
-				</div>
-
-				<form id="booking-form" class="space-y-3 sm:space-y-4 w-full">
-					<div class="space-y-3 sm:space-y-4">
-						<input
-							type="text"
-							name="name"
-							required
-							aria-label={t("footer.form.name")}
-							class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
-							placeholder={t("footer.form.name") + " *"}
-						/>
-						<div
-							class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
-						>
-							<input
-								type="email"
-								name="email"
-								required
-								aria-label={t("footer.form.email")}
-								class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
-								placeholder={t("footer.form.email") + " *"}
-							/>
-							<input
-								type="tel"
-								name="phone"
-								required
-								aria-label={t("footer.form.phone")}
-								class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
-								placeholder={t("footer.form.phone") + " *"}
-							/>
-						</div>
-						<textarea
-							name="guests"
-							rows="4"
-							aria-label={t("footer.form.guests")}
-							class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
-							placeholder={t("footer.form.guests")}></textarea>
-					</div>
-
-					<!-- Honeypot field -->
-					<input
-						type="text"
-						name="website"
-						class="hidden"
-						tabindex="-1"
-						autocomplete="off"
-						aria-hidden="true"
-					/>
-
-					<!-- Privacy consent -->
-					<div class="flex items-start gap-3 mt-4">
-						<input
-							type="checkbox"
-							id="privacy-consent"
-							name="privacyConsent"
-							required
-							class="mt-1 w-5 h-5 accent-[#d9b130] cursor-pointer flex-shrink-0"
-						/>
-						<label
-							for="privacy-consent"
-							class="text-sm text-slate-600 text-left cursor-pointer"
-						>
-							{t("footer.form.privacyConsent")}{" "}
-							<span
-								class="underline hover:text-slate-900 font-semibold"
-							>
-								{t("footer.form.privacyLink")}
-							</span>
-						</label>
-					</div>
-
-					<button
-						type="submit"
-						id="submit-btn"
-						aria-label={t("footer.form.send")}
-						class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 sm:py-4 transition-all shadow-lg active:scale-[0.98] mt-3 sm:mt-4 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed rounded-lg"
-					>
-						<span id="submit-text">{t("footer.form.send")}</span>
-						<span id="submit-loading" class="hidden">Invio...</span>
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<!-- Second Row: Legal & Copyright -->
-	<div class="bg-slate-900 py-8 border-t border-white/5">
-		<div class="w-full px-6 md:px-12 lg:px-24 text-white mb-6">
-			<div class="flex flex-col items-center justify-center gap-2">
+<footer class="bg-black py-20">
+	<div class="container mx-auto px-6 lg:px-20">
+		<div class="flex flex-col items-center justify-center gap-12">
+			<!-- Marfcode Branding -->
+			<div class="flex flex-col items-center gap-6 w-full">
 				<a
 					href="https://marfcode.it"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="block"
+					class="block transition-opacity opacity-80 hover:opacity-100"
 				>
 					<Image
 						src={marfcodizzato}
 						alt="marfcode.it | Dev and Digital Agency"
-						class="w-24 h-auto opacity-50 hover:opacity-100 transition-opacity"
+						class="w-32 h-auto"
 						loading="lazy"
-						widths={[200, 300]}
-						sizes="200px"
 					/>
 				</a>
-				<h3
-					class="text-white uppercase opacity-50 text-[10px] tracking-[0.2em] text-center"
-				>
-					Where ideas break the rules
-				</h3>
 				<p
-					class="text-white opacity-50 text-[9px] uppercase tracking-widest mt-1"
+					class="text-[10px] uppercase tracking-[0.3em] text-white/20 text-center"
 				>
-					Powered by <a
+					&copy; {currentYear} Artigiani del Salotto. Proudly <a
 						href="https://marfcode.it"
 						target="_blank"
-						rel="noopener noreferrer"
-						class="hover:text-white transition-colors underline decoration-white/20"
-						>marfcode.it</a
+						class="hover:text-white transition-colors"
+						>MARFCODizzato</a
 					>
 				</p>
-			</div>
-		</div>
-		<div class="w-full px-6 md:px-12 lg:px-24">
-			<div
-				class="flex flex-col md:flex-row justify-between items-center gap-6"
-			>
-				<p
-					class="text-slate-400 text-[10px] tracking-wide text-center md:text-left"
-				>
-					&copy; {currentYear} artigianidelsalotto.marf.click. {
-						t("footer.copyright")
-					}
-				</p>
-				<div
-					class="flex flex-wrap gap-4 md:gap-8 justify-center md:justify-end"
-				>
-					<span
-						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
-					>
-						{t("footer.privacy")}
-					</span>
-					<span
-						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
-					>
-						{t("footer.terms")}
-					</span>
-					<span
-						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
-					>
-						{t("footer.cookiePolicy")}
-					</span>
-				</div>
 			</div>
 		</div>
 	</div>
 </footer>
-
-<script>
-	import { actions } from "astro:actions";
-
-	function initBookingForm() {
-		const form = document.getElementById("booking-form") as HTMLFormElement;
-		const submitBtn = document.getElementById(
-			"submit-btn",
-		) as HTMLButtonElement;
-		const submitText = document.getElementById(
-			"submit-text",
-		) as HTMLSpanElement;
-		const submitLoading = document.getElementById(
-			"submit-loading",
-		) as HTMLSpanElement;
-		const formMessage = document.getElementById(
-			"form-message",
-		) as HTMLDivElement;
-		const privacyCheckbox = document.getElementById(
-			"privacy-consent",
-		) as HTMLInputElement;
-
-		if (!form) return;
-
-		form.addEventListener("submit", async (e) => {
-			e.preventDefault();
-
-			if (!privacyCheckbox.checked) {
-				formMessage.textContent =
-					"Devi accettare la Privacy Policy per procedere";
-				formMessage.className =
-					"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
-				formMessage.classList.remove("hidden");
-				return;
-			}
-
-			const formData = new FormData(form);
-
-			// Mostra loading
-			submitBtn.disabled = true;
-			submitText.classList.add("hidden");
-			submitLoading.classList.remove("hidden");
-			formMessage.classList.add("hidden");
-
-			try {
-				// We'll keep the action call but it might need to be updated in the backend
-				// For now, we just mock the success if the action fails or we'll update the action later
-				const { data, error } = await actions.sendBooking(formData);
-
-				if (error) {
-					console.error("Errore dall'Action:", error);
-					formMessage.textContent =
-						"Si è verificato un errore. Riprova più tardi.";
-					formMessage.className =
-						"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
-					formMessage.classList.remove("hidden");
-				} else if (data) {
-					formMessage.textContent =
-						"Richiesta inviata con successo! Ti ricontatteremo al più presto.";
-					formMessage.className =
-						"mb-4 p-4 bg-green-600 text-white text-sm sm:text-base rounded";
-					formMessage.classList.remove("hidden");
-					form.reset();
-				}
-			} catch (error) {
-				console.error("Errore:", error);
-				formMessage.textContent =
-					"Errore di connessione. Riprova più tardi.";
-				formMessage.className =
-					"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
-				formMessage.classList.remove("hidden");
-			} finally {
-				submitBtn.disabled = false;
-				submitText.classList.remove("hidden");
-				submitLoading.classList.add("hidden");
-			}
-		});
-	}
-
-	initBookingForm();
-	document.addEventListener("astro:after-swap", initBookingForm);
-</script>

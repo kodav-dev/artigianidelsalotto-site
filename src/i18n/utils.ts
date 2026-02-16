@@ -1,9 +1,7 @@
 import { translations, type Locale } from './translations';
 
 const SLUG_MAP: Record<string, { it: string; en: string }> = {
-  '/our-story': { it: '/la-nostra-storia', en: '/our-story' },
-  '/contact': { it: '/contatti', en: '/contact' },
-  '/blog-di-laura': { it: '/blog-di-laura', en: '/lauras-blog' },
+  "/collezioni": { it: "/collezioni", en: "/collections" },
 };
 
 export function getLangFromUrl(url: URL): Locale {

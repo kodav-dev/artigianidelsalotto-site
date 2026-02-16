@@ -1,152 +1,50 @@
 ---
-import "../../styles/global.css";
-import Navigation from "@/components/Navigation.astro";
-import Footer from "@/components/Footer.astro";
-import SEO from "@/components/SEO.astro";
-import CookieBanner from "@/components/CookieBanner.astro";
-import GTM from "@/components/GTM.astro";
-import GTMNoScript from "@/components/GTMNoScript.astro";
 import { Image } from "astro:assets";
-import {
-	getLangFromUrl,
-	useTranslations,
-	getLocalizedPath,
-} from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
-// Images
-import homeHero from "@/assets/home/hero.webp";
-import Gallery from "@/components/Gallery.astro";
+import Hero from "@/components/sections/Hero.astro";
+import Collections from "@/components/sections/Collections.astro";
+import Quality from "@/components/sections/Quality.astro";
+import Features from "@/components/sections/Features.astro";
+import Customization from "@/components/sections/Customization.astro";
+import HowItWorks from "@/components/sections/HowItWorks.astro";
+import Booking from "@/components/sections/Booking.astro";
+
+import imgFullSofa from "@/assets/home/Abudhabi.jpg";
+import imgFullFabrics from "@/assets/home/Dubai.jpg";
+
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const currentPath = getLocalizedPath("/", lang);
 ---
 
-<!doctype html>
-<html lang={lang}>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="dns-prefetch" href="https://cookiebanner.marf.cloud" />
-		<link rel="preconnect" href="https://cookiebanner.marf.cloud" />
-		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-		<link rel="preconnect" href="https://www.googletagmanager.com" />
-		<GTM />
-		<SEO
-			title={t("home.seo.title")}
-			description={t("home.seo.description")}
-		/>
-	</head>
+<BaseLayout
+	title={t("home.hero.title") + " " + t("home.hero.subtitle")}
+	description={t("home.hero.description")}
+>
+	<Hero lang={lang} />
 
-	<body
-		class="bg-white text-slate-900 overflow-x-hidden transition-colors duration-200"
+	<Collections lang={lang} />
+
+	<Quality lang={lang} />
+
+	<Features lang={lang} />
+
+	<Customization lang={lang} />
+
+	<HowItWorks lang={lang} />
+
+	<!-- Full Width Fabrics Image -->
+	<div
+		class="w-full aspect-[21/9] min-h-[400px] lg:min-h-[600px] overflow-hidden"
 	>
-		<GTMNoScript />
+		<Image
+			src={imgFullFabrics}
+			alt="Materiali e Tessuti"
+			class="w-full h-full object-cover"
+		/>
+	</div>
 
-		<Navigation currentPath={currentPath} />
-
-		<!-- Hero con CTA -->
-		<section class="relative w-full h-[600px] overflow-hidden bg-black">
-			<Image
-				src={homeHero}
-				alt={t("home.seo.title")}
-				class="w-full h-full object-cover object-center opacity-60"
-				loading="eager"
-				fetchpriority="high"
-				widths={[640, 750, 1024, 1400]}
-				sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1400px"
-			/>
-			<div
-				class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
-			>
-			</div>
-
-			<div
-				class="absolute inset-0 flex flex-col items-center justify-center text-center px-6 gap-6"
-			>
-				<h1 class="flex flex-col items-center gap-2">
-					<span
-						class="text-xl md:text-2xl lg:text-3xl tracking-[0.3em] text-[#d9b130] uppercase font-bold"
-					>
-						{t("home.H1_top")}
-					</span>
-					<span
-						class="text-4xl md:text-6xl lg:text-8xl tracking-tighter text-white font-extrabold leading-tight"
-					>
-						{t("home.H1_main")}
-						<span class="text-[#d9b130]"
-							>{t("home.H1_highlight")}</span
-						>
-					</span>
-				</h1>
-
-				<p
-					class="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-medium"
-				>
-					{t("home.title")}
-				</p>
-
-				<!-- CTA Preventivo -->
-				<a
-					href="#booking-form"
-					class="inline-block bg-[#d9b130] hover:bg-white text-black font-bold py-4 px-10 transition-all shadow-xl hover:shadow-2xl active:scale-[0.98] text-lg mt-6 rounded-full uppercase tracking-widest"
-				>
-					{t("footer.bookTableCTA")}
-				</a>
-			</div>
-		</section>
-
-		<main>
-			<!-- Descrizione Artigianale -->
-			<section class="py-24 bg-white">
-				<div class="container mx-auto px-6 max-w-5xl text-center">
-					<h2
-						class="text-4xl md:text-5xl font-bold mb-8 text-slate-900 leading-tight"
-					>
-						{t("home.title")}
-					</h2>
-					<div
-						class="h-1.5 w-24 bg-[#d9b130] mx-auto mb-10 rounded-full"
-					>
-					</div>
-					<p
-						class="text-xl md:text-2xl text-slate-600 leading-relaxed font-light"
-					>
-						{t("home.description")}
-					</p>
-				</div>
-			</section>
-
-			<section class="bg-slate-50 py-24">
-				<div class="container mx-auto px-6 mb-16 text-center">
-					<h2 class="text-4xl font-bold text-slate-900 mb-4">
-						{t("home.galleryTitle")}
-					</h2>
-					<p class="text-slate-600 text-lg">
-						{t("home.gallerySubtitle")}
-					</p>
-				</div>
-				<Gallery lang={lang} />
-			</section>
-
-			<!-- Closure -->
-			<section class="py-24 bg-slate-900 text-white text-center">
-				<div class="container mx-auto px-6">
-					<h2 class="text-4xl md:text-5xl font-bold mb-10">
-						{t("home.closureTitle")}
-					</h2>
-					<a
-						href="#booking-form"
-						class="inline-block border-2 border-[#d9b130] text-[#d9b130] hover:bg-[#d9b130] hover:text-black font-bold py-4 px-10 transition-all rounded-full uppercase tracking-widest"
-					>
-						{t("footer.bookTableCTA")}
-					</a>
-				</div>
-			</section>
-		</main>
-
-		<Footer />
-
-		<CookieBanner siteId="artigianidelsalotto" />
-	</body>
-</html>
+	<Booking lang={lang} />
+</BaseLayout>

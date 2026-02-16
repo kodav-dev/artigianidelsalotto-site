@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+import { useTranslations } from "@/i18n/utils";
+import heroImg from "@/assets/home/Aston.jpg";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="hero" class="relative bg-[#f8f7f2] pt-28 pb-32 overflow-hidden">
+    <div
+        class="container mx-auto px-6 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10"
+    >
+        <!-- Left: Image -->
+        <div class="relative group order-1">
+            <div class="relative overflow-hidden aspect-[4/5] shadow-2xl">
+                <Image
+                    src={heroImg}
+                    alt="Artigiani del Salotto - Produzione Diretta"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="flex flex-col gap-8 order-2">
+            <div class="flex flex-col gap-4">
+                <span
+                    class="text-[11px] uppercase tracking-[0.4em] font-medium text-slate-500"
+                >
+                    {t("home.hero.label")}
+                </span>
+                <h1
+                    class="text-5xl md:text-6xl lg:text-[72px] font-bold text-slate-900 leading-[1] tracking-tight"
+                >
+                    {t("home.hero.title")}
+                    <span
+                        class="block font-serif italic text-4xl md:text-5xl lg:text-[64px] font-normal text-slate-500 mt-2"
+                    >
+                        {t("home.hero.subtitle")}
+                    </span>
+                </h1>
+            </div>
+
+            <p
+                class="text-base md:text-lg text-slate-600 leading-relaxed max-w-xl"
+            >
+                {t("home.hero.description")}
+            </p>
+
+            <!-- Stats -->
+            <div
+                class="grid grid-cols-3 gap-12 pt-12 border-t border-slate-300"
+            >
+                <div class="flex flex-col gap-2">
+                    <span class="text-3xl md:text-4xl font-light text-slate-900"
+                        >100%</span
+                    >
+                    <span
+                        class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold leading-tight"
+                    >
+                        {t("home.hero.stats.madeInItaly")}
+                    </span>
+                    <span
+                        class="text-[9px] uppercase tracking-wider text-slate-400 leading-tight"
+                    >
+                        MADE IN ITALY
+                    </span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-3xl md:text-4xl font-light text-slate-900"
+                        >-40%</span
+                    >
+                    <span
+                        class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold leading-tight"
+                    >
+                        {t("home.hero.stats.discount")}
+                    </span>
+                    <span
+                        class="text-[9px] uppercase tracking-wider text-slate-400 leading-tight"
+                    >
+                        VS SHOWROOM
+                    </span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="text-3xl md:text-4xl font-light text-slate-900"
+                        >5 Anni</span
+                    >
+                    <span
+                        class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold leading-tight"
+                    >
+                        {t("home.hero.stats.warranty")}
+                    </span>
+                    <span
+                        class="text-[9px] uppercase tracking-wider text-slate-400 leading-tight"
+                    >
+                        GARANZIA
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Number -->
+    <div
+        class="absolute bottom-[-2%] left-1/2 -translate-x-1/2 select-none pointer-events-none z-20"
+    >
+        <span
+            class="text-[12rem] lg:text-[22rem] font-bold text-slate-200/60 leading-none"
+            >01</span
+        >
+    </div>
+</section>

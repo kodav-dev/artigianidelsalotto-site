@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { useTranslations, getLocalizedPath } from "@/i18n/utils";
+import { getCategories, getCategoryBySlug, getProductsByCategory, getProduct } from "@/lib/collections";
+
+export function getStaticPaths() {
+	const categories = getCategories();
+	const paths: { params: { category: string; slug: string } }[] = [];
+
+	for (const cat of categories) {
+		const products = getProductsByCategory(cat.slug);
+		for (const product of products) {
+			paths.push({ params: { category: cat.slug, slug: product.slug } });
+		}
+	}
+
+	return paths;
+}
+
+const { category, slug } = Astro.params;
+const lang = "en";
+const t = useTranslations(lang);
+const cat = getCategoryBySlug(category!);
+const product = getProduct(category!, slug!);
+
+if (!cat || !product) return Astro.redirect("/404");
+---
+
+<BaseLayout title={`${product.name[lang]} - ${cat.name[lang]}`} description={product.description[lang]}>
+	<!-- Full-width Hero -->
+	<section class="relative w-full h-screen min-h-[600px]">
+		<Image
+			src={product.heroImage}
+			alt={product.name[lang]}
+			class="absolute inset-0 w-full h-full object-cover"
+		/>
+		<div class="absolute inset-0 bg-black/40" />
+		<div class="absolute inset-0 flex flex-col justify-end pb-20 lg:pb-28">
+			<div class="container mx-auto px-6 lg:px-20">
+				<h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
+					{product.heroTitle[lang]}
+				</h1>
+				<p class="text-xl md:text-2xl font-serif italic text-white/80 max-w-2xl">
+					{product.heroSubtitle[lang]}
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Content -->
+	<section class="py-20 bg-[#f8f7f2]">
+		<div class="container mx-auto px-6 lg:px-20">
+			<a
+				href={getLocalizedPath(`/collezioni/${category}`, lang)}
+				class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#d9b130] transition-colors mb-12"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+				</svg>
+				{t("collections.backToCategory")} — {cat.name[lang]}
+			</a>
+
+			<!-- Product Description -->
+			<div class="max-w-3xl mb-20">
+				<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+					{product.name[lang]}
+				</h2>
+				<p class="text-lg text-slate-600 leading-relaxed">
+					{product.description[lang]}
+				</p>
+			</div>
+
+			<!-- Detail Gallery -->
+			{product.detailImages.length > 0 && (
+				<div class="mb-20">
+					<h2 class="text-2xl font-bold text-slate-900 mb-8">{t("collections.gallery")}</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{product.detailImages.map((img, i) => (
+							<div class="aspect-[4/3] overflow-hidden">
+								<Image
+									src={img}
+									alt={`${product.name[lang]} - ${t("collections.details")} ${i + 1}`}
+									class="w-full h-full object-cover"
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			)}
+
+			<!-- CTA -->
+			<div class="text-center py-16 border-t border-slate-200">
+				<h3 class="text-2xl font-bold text-slate-900 mb-4">{t("collections.bookVisit")}</h3>
+				<a
+					href={getLocalizedPath("/", lang) + "#booking"}
+					class="inline-block bg-[#d9b130] text-white font-semibold px-10 py-4 hover:bg-[#c9a120] transition-colors"
+				>
+					{t("collections.bookVisit")}
+				</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

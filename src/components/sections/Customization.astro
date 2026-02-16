@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import { useTranslations } from "@/i18n/utils";
+import heroImg from "@/assets/home/hero.jpg";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="customization">
+    <!-- Full Width Image -->
+    <div class="w-full aspect-[21/9] min-h-[500px] overflow-hidden relative">
+        <Image
+            src={heroImg}
+            alt="Personalizzazione Divani Artigianali"
+            class="w-full h-full object-cover"
+        />
+    </div>
+
+    <!-- Content Block -->
+    <div class="bg-[#e8e6df] pt-32 pb-40 relative overflow-hidden">
+        <!-- Number overlay -->
+        <div
+            class="absolute top-12 left-6 lg:left-20 select-none pointer-events-none z-20"
+        >
+            <span
+                class="text-[12rem] lg:text-[22rem] font-bold text-slate-900/10 leading-none"
+            >
+                03
+            </span>
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-20 relative z-30">
+            <div class="max-w-4xl">
+                <span
+                    class="text-[11px] uppercase tracking-[0.4em] font-medium text-slate-500 mb-6 block"
+                >
+                    SARTORIALITÀ
+                </span>
+                <h2
+                    class="text-5xl md:text-6xl lg:text-[72px] font-bold text-slate-900 leading-[1] tracking-tight mb-12"
+                >
+                    {t("home.customization.title")}
+                    <span
+                        class="block font-serif italic text-4xl md:text-5xl lg:text-[64px] font-normal text-slate-500 mt-2"
+                    >
+                        {t("home.customization.subtitle")}
+                    </span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <p class="text-base text-slate-600 leading-relaxed">
+                        {t("home.customization.description")}
+                    </p>
+                    <p class="text-base text-slate-600 leading-relaxed">
+                        Il nostro team è a disposizione per fornire consulenza
+                        dedicata, aiutando nella scelta della soluzione più
+                        adatta per comfort, funzionalità ed estetica. Dalla
+                        selezione del modello fino alla consegna, accompagniamo
+                        il cliente con attenzione e professionalità. Realizziamo
+                        divani pensati per adattarsi alla tua casa, non il
+                        contrario.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

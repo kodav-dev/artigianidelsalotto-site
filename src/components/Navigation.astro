@@ -8,7 +8,7 @@ import {
 	translatePath,
 } from "@/i18n/utils";
 
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo.png";
 
 interface Props {
 	currentPath?: string;
@@ -23,138 +23,111 @@ const t = useTranslations(lang);
 
 const navItems = [
 	{ href: getLocalizedPath("/", lang), label: t("nav.home") },
-	{ href: "#booking-form", label: t("footer.bookTableCTA") },
+	{ href: "#quality", label: t("nav.about") },
+	{ href: "#collections", label: t("nav.collections") },
+	{ href: "#hero", label: t("nav.production") },
+	{ href: "#how-it-works", label: t("nav.howItWorks") },
 ];
 ---
 
 <!-- Navigation -->
 <nav
 	id="main-nav"
-	class="sticky top-0 z-70 transition-all duration-300 bg-black border-b border-white/5"
+	class="sticky top-0 z-70 transition-all duration-300 bg-white border-b border-slate-100"
 >
-	<div class="container mx-auto px-6 py-6 flex items-center justify-between">
-		<!-- Mobile Menu Button -->
-		<button
-			id="mobile-menu-btn"
-			class="group md:hidden relative w-10 h-10 flex flex-col items-center justify-center hover:bg-white/10 transition-colors"
-			aria-label="Menu"
-		>
-			<div class="space-y-1.5 px-2">
-				<span
-					class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center group-[.active]:translate-y-2 group-[.active]:rotate-45"
-				></span>
-				<span
-					class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.active]:opacity-0"
-				></span>
-				<span
-					class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center group-[.active]:-translate-y-2 group-[.active]:-rotate-45"
-				></span>
-			</div>
-		</button>
-
+	<div
+		class="container mx-auto px-6 lg:px-20 py-6 flex items-center justify-between"
+	>
 		<!-- Logo -->
 		<a
 			href={getLocalizedPath("/", lang)}
-			class="flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-80"
+			class="flex items-center transition-opacity hover:opacity-80"
 		>
 			<Image
 				src={logo}
-				alt="Logo"
-				width={60}
-				height={59}
-				widths={[40, 60, 120]}
-				sizes="(max-width: 768px) 40px, 60px"
-				class="w-10 h-auto md:w-[60px]"
+				alt="Artigiani del Salotto"
+				height={50}
+				class="h-10 md:h-12 w-auto"
 			/>
-			<div
-				class="flex flex-row leading-none overflow-hidden uppercase font-bold tracking-tighter"
-			>
-				<span class="text-sm md:text-lg text-white whitespace-nowrap"
-					>Artigiani del</span
-				><span
-					class="text-sm md:text-lg text-[#d9b130] ml-1 whitespace-nowrap"
-					>Salotto</span
-				>
-			</div>
 		</a>
 
 		<!-- Desktop Navigation -->
-		<div class="hidden md:flex items-center gap-8">
+		<div class="hidden lg:flex items-center gap-10">
 			{
 				navItems.map((item) => (
 					<a
 						href={item.href}
-						class={`text-sm tracking-wide transition-colors ${
+						class={`text-[11px] tracking-[0.2em] uppercase font-bold transition-colors ${
 							currentPath === item.href ||
 							currentPath.startsWith(item.href + "/")
-								? "text-yellow-laura font-semibold"
-								: "text-white/70 hover:text-yellow-laura"
+								? "text-slate-900"
+								: "text-slate-400 hover:text-slate-900"
 						}`}
 					>
 						{item.label}
 					</a>
 				))
 			}
-		</div>
 
-		<!-- Actions -->
-		<div class="flex items-center gap-3">
 			<!-- Language Switcher -->
-			<div class="relative">
+			<div class="relative ml-4">
 				<button
 					id="lang-toggle"
-					class="p-2 hover:bg-white/10 rounded-none transition-colors text-white flex items-center gap-1.5"
+					class="p-2 hover:bg-slate-50 transition-colors text-slate-800 flex items-center gap-1.5"
 				>
 					<span
-						class="text-xs font-bold uppercase tracking-widest bg-white/10 px-1.5 py-0.5"
+						class="text-[10px] font-bold uppercase tracking-widest bg-slate-100 px-2 py-1"
 						>{lang}</span
 					>
 				</button>
 				<div
 					id="lang-menu"
-					class="hidden absolute right-0 mt-3 py-2 w-32 bg-slate-900/95 backdrop-blur-xl shadow-2xl border border-white/10 z-50"
+					class="hidden absolute right-0 mt-3 py-2 w-32 bg-white shadow-xl border border-slate-100 z-50 transition-all"
 				>
 					<a
 						href={itPath || translatePath(currentPath, "it")}
-						class="block px-4 py-2.5 text-sm font-medium text-white hover:bg-yellow-laura/10 hover:text-[#d9b130] transition-colors"
+						class="block px-4 py-2.5 text-xs font-bold text-slate-800 hover:bg-slate-50 transition-colors"
 					>
 						🇮🇹 Italiano
 					</a>
 					<a
 						href={enPath || translatePath(currentPath, "en")}
-						class="block px-4 py-2.5 text-sm font-medium text-white hover:bg-#d9b130/10 hover:text-[#d9b130] transition-colors"
+						class="block px-4 py-2.5 text-xs font-bold text-slate-800 hover:bg-slate-50 transition-colors"
 					>
 						🇬🇧 English
 					</a>
 				</div>
 			</div>
 		</div>
+
+		<!-- Mobile Menu Button -->
+		<button
+			id="mobile-menu-btn"
+			class="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center"
+			aria-label="Menu"
+		>
+			<div class="space-y-1.5 px-2">
+				<span class="block w-6 h-0.5 bg-slate-800"></span>
+				<span class="block w-6 h-0.5 bg-slate-800"></span>
+			</div>
+		</button>
 	</div>
 </nav>
 
 <!-- Mobile Menu Overlay -->
 <div
 	id="mobile-menu"
-	class="group fixed inset-0 z-60 bg-black opacity-0 pointer-events-none transition-all duration-300 md:hidden overflow-hidden"
+	class="group fixed inset-0 z-60 bg-white opacity-0 pointer-events-none transition-all duration-300 lg:hidden"
 >
 	<div
-		class="flex flex-col items-center justify-center text-center w-full h-full overflow-y-auto"
+		class="flex flex-col items-center justify-center text-center w-full h-full"
 	>
 		<div class="space-y-8 px-6 py-8">
 			{
-				navItems.map((item, i) => (
+				navItems.map((item) => (
 					<a
 						href={item.href}
-						style={`transition-delay: ${i * 70}ms`}
-						class={`block text-3xl sm:text-4xl font-black tracking-tighter transition-all duration-500 hover:text-yellow-laura whitespace-nowrap ${
-							currentPath === item.href ||
-							currentPath.startsWith(item.href + "/")
-								? "text-yellow-laura"
-								: "text-white"
-						} ${
-							/* Hidden by default, shown when menu is active */
-							"opacity-0 translate-y-4 group-[.active]:opacity-100 group-[.active]:translate-y-0"
-						}`}
+						class="block text-2xl font-bold uppercase tracking-widest text-slate-800 hover:text-[#d9b130]"
 					>
 						{item.label}
 					</a>
@@ -181,32 +154,6 @@ const navItems = [
 
 		if (!nav || !btn || !menu) return;
 
-		// Scroll handler with RAF to prevent forced reflow
-		let ticking = false;
-		let lastScrollY = 0;
-
-		const updateNavStyles = () => {
-			if (lastScrollY > 10) {
-				nav.classList.add("bg-black/80", "backdrop-blur-md");
-				nav.classList.remove("bg-black");
-			} else {
-				nav.classList.remove("bg-black/80", "backdrop-blur-md");
-				nav.classList.add("bg-black");
-			}
-			ticking = false;
-		};
-
-		const handleScroll = () => {
-			lastScrollY = window.scrollY;
-			if (!ticking) {
-				requestAnimationFrame(updateNavStyles);
-				ticking = true;
-			}
-		};
-
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		updateNavStyles();
-
 		// Mobile menu toggle
 		const toggleMenu = () => {
 			const isActive = btn.classList.toggle("active");
@@ -214,28 +161,28 @@ const navItems = [
 			document.body.style.overflow = isActive ? "hidden" : "";
 		};
 
-		// Avoid duplicate listeners by removing old one if it survives (not typical for Astro)
-		btn.removeEventListener("click", toggleMenu);
 		btn.addEventListener("click", toggleMenu);
 
+		// Close mobile menu on link click
+		menu.querySelectorAll("a").forEach((link) => {
+			link.addEventListener("click", () => {
+				btn.classList.remove("active");
+				menu.classList.remove("active");
+				document.body.style.overflow = "";
+			});
+		});
+
 		// Language toggle
-		const toggleLang = (e: Event) => {
+		langBtn?.addEventListener("click", (e) => {
 			e.stopPropagation();
 			langMenu?.classList.toggle("hidden");
-		};
+		});
 
-		langBtn?.removeEventListener("click", toggleLang);
-		langBtn?.addEventListener("click", toggleLang);
-
-		// Close lang menu on outside click
 		document.addEventListener("click", () =>
 			langMenu?.classList.add("hidden"),
 		);
 	}
 
-	// Initialize on page load
 	initNavigation();
-
-	// Initialize after each View Transition swap
 	document.addEventListener("astro:after-swap", initNavigation);
 </script>

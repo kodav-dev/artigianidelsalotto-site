@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import { useTranslations, getLocalizedPath } from "@/i18n/utils";
+import { getCategories, type Category } from "@/lib/collections";
+import type { Locale } from "@/i18n/translations";
+
+interface Props {
+	lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const categories = getCategories();
+---
+
+<section id="collections" class="bg-black py-32">
+	<div class="container mx-auto px-6 lg:px-20">
+		<div class="text-center mb-24">
+			<span class="text-[10px] uppercase tracking-[0.4em] font-medium text-slate-400 mb-4 block">
+				{t("home.collections.label")}
+			</span>
+			<h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+				{t("home.collections.title")}
+			</h2>
+		</div>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+			{categories.map((cat: Category) => (
+				<a
+					href={getLocalizedPath(`/collezioni/${cat.slug}`, lang)}
+					class="group cursor-pointer block"
+				>
+					<div class="relative aspect-[4/3] overflow-hidden mb-6">
+						<Image
+							src={cat.image}
+							alt={cat.name[lang]}
+							class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+						/>
+						<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
+					</div>
+					<h3 class="text-xl font-bold tracking-tight text-white group-hover:text-[#d9b130] transition-colors">
+						{cat.name[lang]}
+					</h3>
+				</a>
+			))}
+		</div>
+	</div>
+</section>

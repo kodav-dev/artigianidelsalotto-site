@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import { useTranslations } from "@/i18n/utils";
+import qualityImg from "@/assets/home/Ritz.jpg";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const features = [
+    {
+        name: t("home.quality.features")[0],
+        desc: t("home.quality.materialsDesc"),
+    },
+    { name: t("home.quality.features")[1], desc: t("home.quality.craftDesc") },
+    {
+        name: t("home.quality.features")[2],
+        desc: t("home.quality.structureDesc"),
+    },
+];
+---
+
+<section id="quality" class="relative bg-white py-32 lg:py-48 overflow-hidden">
+    <div
+        class="container mx-auto px-6 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center"
+    >
+        <!-- Left: Content -->
+        <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
+                <span
+                    class="text-[11px] uppercase tracking-[0.4em] font-medium text-slate-400"
+                >
+                    {t("home.quality.label")}
+                </span>
+                <h2
+                    class="text-5xl md:text-6xl lg:text-[72px] font-bold text-slate-900 leading-[1] tracking-tight"
+                >
+                    {t("home.quality.title")}
+                    <span
+                        class="block font-serif italic text-4xl md:text-5xl lg:text-[64px] font-normal text-slate-500 mt-2"
+                    >
+                        {t("home.quality.subtitle")}
+                    </span>
+                </h2>
+            </div>
+
+            <p class="text-base text-slate-600 leading-relaxed max-w-lg">
+                {t("home.quality.description")}
+            </p>
+
+            <!-- Features with descriptions -->
+            <div class="flex flex-col gap-8 pt-6">
+                {
+                    features.map((feature) => (
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-sm font-bold uppercase tracking-widest text-[#d9b130]">
+                                {feature.name}
+                            </h3>
+                            <p class="text-xs text-slate-400 leading-relaxed tracking-wide">
+                                {feature.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="relative">
+            <!-- Number overlay -->
+            <div
+                class="absolute -top-16 -right-8 lg:-top-24 lg:-right-12 select-none pointer-events-none z-20"
+            >
+                <span
+                    class="text-[12rem] lg:text-[22rem] font-bold text-slate-900/10 leading-none"
+                    >02</span
+                >
+            </div>
+            <div class="relative z-10 aspect-[4/5] overflow-hidden shadow-2xl">
+                <Image
+                    src={qualityImg}
+                    alt="Qualità costruttiva Artigiani del Salotto"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+    </div>
+</section>
