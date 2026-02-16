@@ -1,0 +1,234 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@/i18n/utils";
+import homeHero from "@/assets/home/hero.webp";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+    title={t("privacy.seo.title")}
+    description={t("privacy.seo.description")}
+    lang={lang}
+    currentPath={getLocalizedPath("/privacy", lang)}
+    heroImage={homeHero}
+    H1={t("footer.privacy")}
+>
+    <main class="container mx-auto px-6 pt-12 pb-32">
+        <div class="max-w-4xl mx-auto prose dark:prose-invert">
+            <p class="text-gray-400 mb-8">Last update: January 12, 2026</p>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    1. Data Controller
+                </h2>
+                <p>
+                    The Data Controller for personal data is <strong>La Corte di Laura</strong>,
+                    located at Via Nicola Dorati 44, Località Granaiola (Bagni di Lucca), Bagni di Lucca (LU), Italy.
+                </p>
+                <p class="mt-4">
+                    For any requests regarding your personal data, you can contact us at:
+                    <a href="mailto:info@lacortedilaura.it" class="text-[#d9b130] hover:underline">info@lacortedilaura.it</a>
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    2. Types of Data Collected
+                </h2>
+                <p>Our website collects and processes the following categories of personal data:</p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    2.1 Navigation Data
+                </h3>
+                <p>
+                    During your visit to our site, our computer systems and software procedures
+                    automatically collect certain personal data, the transmission of which is
+                    implicit in the use of Internet communication protocols. This data includes:
+                    IP addresses, browser type, operating system, domain name, access times,
+                    pages visited.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    2.2 Voluntarily Provided Data
+                </h3>
+                <p>
+                    Personal data that you voluntarily provide through contact or booking forms
+                    (name, surname, email, phone number, number of guests, preferred date and time)
+                    are collected only with your explicit consent and used exclusively for the
+                    purposes indicated at the time of collection.
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    2.3 Cookies and Tracking Technologies
+                </h3>
+                <p>
+                    Our site uses <strong>Google Tag Manager</strong> to manage analytics and
+                    tracking tags. Through this platform, technical and analytical cookies may be
+                    installed to improve browsing experience and analyze site traffic. For more
+                    information, please see our
+                    <a href="/en/cookie-policy" class="text-[#d9b130] hover:underline">Cookie Policy</a>.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    3. Purpose of Processing and Legal Basis
+                </h2>
+                <p>Your personal data is processed for the following purposes:</p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>
+                        <strong>Reservation management:</strong> to respond to table booking
+                        requests (legal basis: execution of pre-contractual measures).
+                    </li>
+                    <li>
+                        <strong>Communications:</strong> to respond to your contact requests
+                        and provide information about our services (legal basis: consent or legitimate interest).
+                    </li>
+                    <li>
+                        <strong>Analytics and statistics:</strong> to improve user experience
+                        on our website through analysis of traffic data in aggregate and anonymous
+                        form (legal basis: legitimate interest).
+                    </li>
+                    <li>
+                        <strong>Legal obligations:</strong> to comply with obligations provided
+                        by law, regulations, or European legislation (legal basis: legal obligation).
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    4. Method of Processing
+                </h2>
+                <p>
+                    Personal data is processed using manual and automated tools for the time
+                    strictly necessary to achieve the purposes for which it was collected.
+                    Specific security measures are implemented to prevent data loss, illicit
+                    or improper use, and unauthorized access.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    5. Communication and Disclosure of Data
+                </h2>
+                <p>
+                    Your personal data may be communicated to:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>
+                        Entities that provide services for the management of computer systems
+                        and the website (hosting, maintenance).
+                    </li>
+                    <li>
+                        Google LLC, as provider of Google Tag Manager and Google Analytics
+                        services, for statistical analysis purposes.
+                    </li>
+                    <li>
+                        Public authorities and law enforcement, in case of legitimate requests
+                        and in cases provided by law.
+                    </li>
+                </ul>
+                <p class="mt-4">
+                    Your data will never be disclosed to third parties without your explicit
+                    consent, except in cases provided by law.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    6. International Data Transfer
+                </h2>
+                <p>
+                    Some of the service providers we use (such as Google) may transfer personal
+                    data outside the European Economic Area (EEA). In such cases, we ensure that
+                    the transfer takes place in compliance with GDPR and with appropriate safeguards
+                    (e.g., Standard Contractual Clauses approved by the European Commission).
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    7. Retention Period
+                </h2>
+                <p>
+                    Personal data will be retained for the period strictly necessary to achieve
+                    the purposes for which it was collected:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>
+                        <strong>Reservation data:</strong> for the duration necessary for managing
+                        the reservation and for any subsequent legal obligations.
+                    </li>
+                    <li>
+                        <strong>Contact data:</strong> until you request deletion or for the time
+                        necessary to fulfill your request.
+                    </li>
+                    <li>
+                        <strong>Navigation data and cookies:</strong> according to the terms
+                        indicated in the Cookie Policy.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    8. Data Subject Rights
+                </h2>
+                <p>
+                    Under Regulation (EU) 2016/679 (GDPR), you have the right to:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>
+                        <strong>Access:</strong> obtain confirmation of the existence of personal
+                        data concerning you and receive a copy.
+                    </li>
+                    <li>
+                        <strong>Rectification:</strong> request correction of inaccurate data or
+                        integration of incomplete data.
+                    </li>
+                    <li>
+                        <strong>Erasure:</strong> request deletion of your personal data in cases
+                        provided by law.
+                    </li>
+                    <li>
+                        <strong>Restriction:</strong> request restriction of processing of your
+                        personal data.
+                    </li>
+                    <li>
+                        <strong>Portability:</strong> receive your data in a structured,
+                        machine-readable format.
+                    </li>
+                    <li>
+                        <strong>Objection:</strong> object to processing of your personal data
+                        for legitimate reasons.
+                    </li>
+                    <li>
+                        <strong>Withdrawal of consent:</strong> withdraw consent at any time,
+                        without prejudice to the lawfulness of processing based on consent before withdrawal.
+                    </li>
+                </ul>
+                <p class="mt-4">
+                    To exercise your rights, you can contact us at:
+                    <a href="mailto:info@lacortedilaura.it" class="text-[#d9b130] hover:underline">info@lacortedilaura.it</a>
+                </p>
+                <p class="mt-4">
+                    You also have the right to lodge a complaint with the Data Protection Authority
+                    if you believe that the processing of your data violates GDPR.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    9. Changes to Privacy Policy
+                </h2>
+                <p>
+                    This Privacy Policy may be subject to changes over time. We invite you to
+                    regularly consult this page to stay updated on how we protect your personal data.
+                </p>
+            </section>
+        </div>
+    </main>
+</BaseLayout>

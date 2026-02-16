@@ -1,0 +1,202 @@
+---
+import { Image } from "astro:assets";
+import { useTranslations } from "@/i18n/utils";
+import menuBg from "@/assets/home/menu-bg.webp";
+
+interface Props {
+    lang: "it" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const menuItems = [
+    {
+        category: t("home.menu.categories.antipasti"),
+        items: [
+            {
+                name: t("home.menu.items.lardo.name"),
+                price: t("home.menu.items.lardo.price"),
+                desc: t("home.menu.items.lardo.description"),
+            },
+            {
+                name: t("home.menu.items.scrigno.name"),
+                price: t("home.menu.items.scrigno.price"),
+                desc: t("home.menu.items.scrigno.description"),
+            },
+            {
+                name: t("home.menu.items.uovo.name"),
+                price: t("home.menu.items.uovo.price"),
+                desc: t("home.menu.items.uovo.description"),
+            },
+        ],
+    },
+    {
+        category: t("home.menu.categories.primi"),
+        items: [
+            {
+                name: t("home.menu.items.ravioli.name"),
+                price: t("home.menu.items.ravioli.price"),
+                desc: t("home.menu.items.ravioli.description"),
+            },
+            {
+                name: t("home.menu.items.tagliatelle.name"),
+                price: t("home.menu.items.tagliatelle.price"),
+                desc: t("home.menu.items.tagliatelle.description"),
+            },
+            {
+                name: t("home.menu.items.polenta.name"),
+                price: t("home.menu.items.polenta.price"),
+                desc: t("home.menu.items.polenta.description"),
+            },
+        ],
+    },
+    {
+        category: t("home.menu.categories.secondi"),
+        items: [
+            {
+                name: t("home.menu.items.maiale.name"),
+                price: t("home.menu.items.maiale.price"),
+                desc: t("home.menu.items.maiale.description"),
+            },
+            {
+                name: t("home.menu.items.ganassino.name"),
+                price: t("home.menu.items.ganassino.price"),
+                desc: t("home.menu.items.ganassino.description"),
+            },
+            {
+                name: t("home.menu.items.picanha.name"),
+                price: t("home.menu.items.picanha.price"),
+                desc: t("home.menu.items.picanha.description"),
+            },
+        ],
+    },
+    {
+        category: t("home.menu.categories.dolci"),
+        items: [
+            {
+                name: t("home.menu.items.tiramisu.name"),
+                price: t("home.menu.items.tiramisu.price"),
+                desc: t("home.menu.items.tiramisu.description"),
+            },
+            {
+                name: t("home.menu.items.giardino.name"),
+                price: t("home.menu.items.giardino.price"),
+                desc: t("home.menu.items.giardino.description"),
+            },
+            {
+                name: t("home.menu.items.millefoglie.name"),
+                price: t("home.menu.items.millefoglie.price"),
+                desc: t("home.menu.items.millefoglie.description"),
+            },
+        ],
+    },
+];
+---
+
+<section
+    class="relative w-full min-h-screen py-32 flex flex-col items-center justify-center bg-fixed bg-cover bg-center"
+    style={`background-image: url(${menuBg.src});`}
+>
+    <!-- Dark Overlay for better contrast -->
+    <div class="absolute inset-0 bg-black/40 -z-10"></div>
+
+    <!-- Stylized Title -->
+    <div class="text-center mb-20">
+        <h2
+            class="text-4xl md:text-6xl text-yellow-site drop-shadow-2xl font-adelia"
+        >
+            {t("home.menu.title")}
+        </h2>
+    </div>
+
+    <!-- First Band (Antipasti & Primi) -->
+    <div
+        class="w-full bg-white/20 backdrop-blur-md py-16 mb-8 border-y border-white/10"
+    >
+        <div
+            class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16"
+        >
+            {
+                menuItems.slice(0, 2).map((cat) => (
+                    <div class="space-y-8">
+                        <h3 class="text-2xl font-bold uppercase tracking-[0.2em] text-white/50 border-b border-white/10 pb-4">
+                            {cat.category}
+                        </h3>
+                        <div class="space-y-8">
+                            {cat.items.map((item) => (
+                                <div class="group">
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <h4 class="text-xl font-bold text-white group-hover:text-yellow-site transition-colors">
+                                            {item.name}
+                                        </h4>
+                                        <span class="text-yellow-site font-bold ml-4 whitespace-nowrap">
+                                            {item.price}
+                                        </span>
+                                    </div>
+                                    {item.desc && (
+                                        <p class="text-sm text-white/60 font-medium italic">
+                                            {item.desc}
+                                        </p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Second Band (Secondi & Dolci) -->
+    <div
+        class="w-full bg-white/20 backdrop-blur-md py-16 border-y border-white/10"
+    >
+        <div
+            class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16"
+        >
+            {
+                menuItems.slice(2, 4).map((cat) => (
+                    <div class="space-y-8">
+                        <h3 class="text-2xl font-bold uppercase tracking-[0.2em] text-white/50 border-b border-white/10 pb-4">
+                            {cat.category}
+                        </h3>
+                        <div class="space-y-8">
+                            {cat.items.map((item) => (
+                                <div class="group">
+                                    <div class="flex justify-between items-baseline mb-2">
+                                        <h4 class="text-xl font-bold text-white group-hover:text-yellow-site transition-colors">
+                                            {item.name}
+                                        </h4>
+                                        <span class="text-yellow-site font-bold ml-4 whitespace-nowrap">
+                                            {item.price}
+                                        </span>
+                                    </div>
+                                    {item.desc && (
+                                        <p class="text-sm text-white/60 font-medium italic">
+                                            {item.desc}
+                                        </p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        /* Parallax effect fallback and enhancement */
+        background-attachment: fixed;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+        /* Disable parallax on iOS as it can be buggy with background-attachment: fixed */
+        section {
+            background-attachment: scroll;
+        }
+    }
+</style>

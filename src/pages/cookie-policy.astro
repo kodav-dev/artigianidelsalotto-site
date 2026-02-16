@@ -1,0 +1,234 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@/i18n/utils";
+import homeHero from "@/assets/home/hero.webp";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+    title={t("cookiePolicy.seo.title")}
+    description={t("cookiePolicy.seo.description")}
+    lang={lang}
+    currentPath={getLocalizedPath("/cookie-policy", lang)}
+    heroImage={homeHero}
+    H1={t("footer.cookiePolicy")}
+>
+    <main class="container mx-auto px-6 pt-12 pb-32">
+        <div class="max-w-4xl mx-auto prose dark:prose-invert">
+            <p class="text-gray-400 mb-8">
+                Ultimo aggiornamento: 12 Gennaio 2026
+            </p>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    1. Cosa sono i Cookie
+                </h2>
+                <p>
+                    I cookie sono piccoli file di testo che vengono memorizzati sul tuo dispositivo
+                    (computer, tablet, smartphone) quando visiti un sito web. I cookie permettono al
+                    sito di riconoscere il tuo dispositivo e memorizzare alcune informazioni sulle tue
+                    preferenze o azioni passate.
+                </p>
+                <p class="mt-4">
+                    I cookie possono essere "di sessione" (che vengono cancellati quando chiudi il browser)
+                    o "persistenti" (che rimangono sul tuo dispositivo fino alla loro scadenza o fino a
+                    quando li elimini manualmente).
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    2. Tipologie di Cookie Utilizzati
+                </h2>
+                <p>
+                    Il nostro sito utilizza diverse tipologie di cookie, ciascuna con finalità specifiche:
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    2.1 Cookie Tecnici Necessari
+                </h3>
+                <p>
+                    Questi cookie sono essenziali per il corretto funzionamento del sito e per permetterti
+                    di navigare e utilizzare le sue funzionalità. Senza questi cookie, alcuni servizi
+                    richiesti (come la gestione delle prenotazioni) non potrebbero essere forniti.
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li><strong>Finalità:</strong> Garantire il funzionamento tecnico del sito</li>
+                    <li><strong>Durata:</strong> Sessione o persistenti (variabile)</li>
+                    <li><strong>Base giuridica:</strong> Legittimo interesse</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    2.2 Cookie Analitici
+                </h3>
+                <p>
+                    Utilizziamo <strong>Google Tag Manager</strong> e <strong>Google Analytics</strong>
+                    per raccogliere informazioni su come i visitatori utilizzano il nostro sito.
+                    Questi cookie ci aiutano a capire quali pagine sono più popolari, come i visitatori
+                    si muovono nel sito e a identificare eventuali problemi tecnici.
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li><strong>Cookie utilizzati:</strong> _ga, _gid, _gat</li>
+                    <li><strong>Finalità:</strong> Analisi statistica del traffico e comportamento degli utenti</li>
+                    <li><strong>Durata:</strong> Da 1 minuto a 2 anni</li>
+                    <li><strong>Base giuridica:</strong> Consenso (dove richiesto) o legittimo interesse</li>
+                    <li><strong>Gestore:</strong> Google LLC</li>
+                </ul>
+                <p class="mt-4">
+                    I dati raccolti attraverso Google Analytics sono anonimi e aggregati. Google può
+                    trasferire queste informazioni a terzi se richiesto dalla legge o quando tali terzi
+                    elaborano le informazioni per conto di Google.
+                </p>
+                <p class="mt-4">
+                    Per maggiori informazioni su come Google utilizza i dati, consulta:
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#d9b130] hover:underline">
+                        Informativa sulla Privacy di Google
+                    </a>
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    2.3 Cookie di Terze Parti
+                </h3>
+                <p>
+                    Il nostro sito può contenere link o integrazioni con servizi di terze parti
+                    (ad esempio, mappe di Google, social media). Questi servizi possono installare
+                    i propri cookie sul tuo dispositivo. Non abbiamo controllo sui cookie di terze
+                    parti e ti invitiamo a consultare le rispettive informative sulla privacy.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    3. Google Tag Manager
+                </h2>
+                <p>
+                    Utilizziamo <strong>Google Tag Manager</strong> (GTM) come piattaforma per gestire
+                    i tag del sito web. GTM stesso non raccoglie dati personali, ma facilita la gestione
+                    di altri strumenti di tracciamento come Google Analytics.
+                </p>
+                <p class="mt-4">
+                    Attraverso GTM, possiamo installare e aggiornare i tag (snippet di codice) che
+                    raccolgono e inviano dati a servizi di terze parti. Il nostro GTM è configurato
+                    per caricarsi in modo "lazy" (ritardato) per ottimizzare le prestazioni del sito.
+                </p>
+                <p class="mt-4">
+                    <strong>ID Google Tag Manager utilizzato:</strong> GTM-NR724K2V
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    4. Come Gestire i Cookie
+                </h2>
+                <p>
+                    Puoi controllare e gestire i cookie in diversi modi:
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    4.1 Impostazioni del Browser
+                </h3>
+                <p>
+                    La maggior parte dei browser consente di gestire le preferenze sui cookie attraverso
+                    le impostazioni. Puoi configurare il browser per:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>Bloccare tutti i cookie</li>
+                    <li>Accettare solo i cookie di prima parte</li>
+                    <li>Cancellare i cookie quando chiudi il browser</li>
+                    <li>Ricevere una notifica prima che un cookie venga installato</li>
+                </ul>
+                <p class="mt-4">
+                    Ecco i link alle guide per i browser più comuni:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>
+                        <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="text-[#d9b130] hover:underline">
+                            Google Chrome
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" target="_blank" rel="noopener noreferrer" class="text-[#d9b130] hover:underline">
+                            Mozilla Firefox
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="text-[#d9b130] hover:underline">
+                            Safari
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="text-[#d9b130] hover:underline">
+                            Microsoft Edge
+                        </a>
+                    </li>
+                </ul>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    4.2 Opt-out da Google Analytics
+                </h3>
+                <p>
+                    Puoi impedire a Google Analytics di raccogliere dati sulla tua navigazione
+                    installando il componente aggiuntivo del browser per la disattivazione di Google Analytics:
+                </p>
+                <p class="mt-4">
+                    <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="text-[#d9b130] hover:underline">
+                        Componente aggiuntivo per la disattivazione di Google Analytics
+                    </a>
+                </p>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-[#d9b130]">
+                    4.3 Note Importanti
+                </h3>
+                <p>
+                    Disabilitare i cookie potrebbe influire sulla tua esperienza di navigazione e
+                    limitare alcune funzionalità del sito. I cookie tecnici necessari potrebbero
+                    essere richiesti per garantire il corretto funzionamento di determinate aree del sito.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    5. Trasferimento dei Dati all'Estero
+                </h2>
+                <p>
+                    Alcuni dei cookie che utilizziamo, in particolare quelli di Google, possono comportare
+                    il trasferimento dei tuoi dati personali negli Stati Uniti o in altri paesi al di fuori
+                    dello Spazio Economico Europeo (SEE).
+                </p>
+                <p class="mt-4">
+                    Google LLC si conforma al Data Privacy Framework (DPF) UE-USA e utilizza Standard
+                    Contractual Clauses (SCC) approvate dalla Commissione Europea per garantire un
+                    livello adeguato di protezione dei dati trasferiti.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    6. Aggiornamenti alla Cookie Policy
+                </h2>
+                <p>
+                    Questa Cookie Policy può essere aggiornata periodicamente per riflettere modifiche
+                    nelle nostre pratiche o per conformarsi a nuove normative. Ti invitiamo a consultare
+                    regolarmente questa pagina per rimanere informato su come utilizziamo i cookie.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    7. Contatti
+                </h2>
+                <p>
+                    Per domande o richieste relative alla presente Cookie Policy o all'utilizzo dei
+                    cookie sul nostro sito, puoi contattarci all'indirizzo:
+                    <a href="mailto:info@lacortedilaura.it" class="text-[#d9b130] hover:underline">info@lacortedilaura.it</a>
+                </p>
+                <p class="mt-4">
+                    Per ulteriori informazioni sul trattamento dei tuoi dati personali, consulta la nostra
+                    <a href="/privacy" class="text-[#d9b130] hover:underline">Privacy Policy</a>.
+                </p>
+            </section>
+        </div>
+    </main>
+</BaseLayout>

@@ -1,0 +1,149 @@
+---
+import { SEO as AstroSEO } from "astro-seo";
+import StructuredData from "./StructuredData.astro";
+
+interface Props {
+	title: string;
+	description: string;
+	canonical?: string;
+	noindex?: boolean;
+	nofollow?: boolean;
+	image?: string;
+	article?: {
+		publishedTime?: string;
+		modifiedTime?: string;
+		author?: string;
+		tags?: string[];
+	};
+}
+
+const {
+	title,
+	description,
+	canonical,
+	noindex = false,
+	nofollow = false,
+	image = "/favicon.png",
+	article,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString() || "https://lacortedilaura.it";
+const ensureTrailingSlash = (path: string) => {
+	if (path === "/") return path;
+	return path.endsWith("/") ? path : `${path}/`;
+};
+const canonicalURL = canonical
+	? new URL(ensureTrailingSlash(canonical), siteUrl).toString()
+	: new URL(ensureTrailingSlash(Astro.url.pathname), siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+
+// Extract language and handle paths robustly
+const lang =
+	Astro.url.pathname.startsWith("/en/") || Astro.url.pathname === "/en"
+		? "en"
+		: "it";
+const isEn = lang === "en";
+
+const alternatePath = isEn
+	? ensureTrailingSlash(Astro.url.pathname.replace(/^\/en/, "") || "/")
+	: ensureTrailingSlash(`/en${ensureTrailingSlash(Astro.url.pathname)}`);
+
+const alternateUrl = new URL(alternatePath, siteUrl).toString();
+
+// x-default should point to the default version of the CURRENT page
+// Since 'it' is our defaultLocale, the x-default is the Italian version
+const xDefaultUrl = isEn ? alternateUrl : canonicalURL;
+
+// Only show canonical if the page is indexable, or if a specific canonical is provided
+const showCanonical = !noindex || canonical;
+---
+
+<AstroSEO
+	title={title}
+	description={description}
+	canonical={showCanonical ? canonicalURL : undefined}
+	noindex={noindex}
+	nofollow={nofollow}
+	openGraph={{
+		basic: {
+			title: title,
+			type: article ? "article" : "website",
+			image: imageUrl,
+			url: canonicalURL,
+		},
+		optional: {
+			description: description,
+			locale: lang === "en" ? "en_US" : "it_IT",
+			siteName: "Ristorante - La Corte di Laura",
+		},
+		...(article && {
+			article: {
+				publishedTime: article.publishedTime,
+				modifiedTime: article.modifiedTime,
+				authors: article.author ? [article.author] : undefined,
+				tags: article.tags,
+			},
+		}),
+		image: {
+			url: imageUrl,
+			alt: title,
+			width: 1200,
+			height: 630,
+		},
+	}}
+	twitter={{
+		card: "summary_large_image",
+		title: title,
+		description: description,
+		image: imageUrl,
+		imageAlt: title,
+	}}
+	extend={{
+		link: [
+			{ rel: "icon", type: "image/png", href: "/favicon.png" },
+			{ rel: "sitemap", href: "/sitemap-index.xml" },
+			{
+				rel: "preload",
+				as: "font",
+				type: "font/woff2",
+				href: "/fonts/adelia.woff2",
+				crossorigin: "anonymous",
+			},
+			{
+				rel: "alternate",
+				hreflang: isEn ? "it" : "en",
+				href: alternateUrl,
+			},
+			{ rel: "alternate", hreflang: lang, href: canonicalURL },
+			{ rel: "alternate", hreflang: "x-default", href: xDefaultUrl },
+		],
+		meta: [
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{ name: "generator", content: Astro.generator },
+			{ name: "theme-color", content: "#6366f1" },
+			{ httpEquiv: "content-language", content: lang },
+		],
+	}}
+/>
+
+{article ? (
+	<StructuredData
+		type="article"
+		data={{
+			title,
+			description,
+			image,
+			...article
+		}}
+	/>
+) : (
+	<>
+		<StructuredData type="restaurant" />
+		{(Astro.url.pathname === "/" || Astro.url.pathname === "/en" || Astro.url.pathname === "/en/") && (
+			<StructuredData type="website" />
+		)}
+	</>
+)}

@@ -1,0 +1,35 @@
+---
+---
+<!-- Google Tag Manager - Lazy Loaded -->
+<script is:inline>
+// Initialize dataLayer
+window.dataLayer = window.dataLayer || [];
+
+// Lazy load GTM after page is interactive
+function loadGTM() {
+	if (window.gtmLoaded) return;
+	window.gtmLoaded = true;
+
+	window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+	var f = document.getElementsByTagName('script')[0];
+	var j = document.createElement('script');
+	j.async = true;
+	j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-NR724K2V';
+	f.parentNode.insertBefore(j, f);
+}
+
+// Load GTM after page is interactive
+if (document.readyState === 'complete') {
+	setTimeout(loadGTM, 1000);
+} else {
+	window.addEventListener('load', function() {
+		setTimeout(loadGTM, 1000);
+	});
+}
+
+// Also load on first user interaction
+['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(function(event) {
+	window.addEventListener(event, loadGTM, { once: true, passive: true });
+});
+</script>
+<!-- End Google Tag Manager -->

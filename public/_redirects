@@ -1,0 +1,6 @@
+# WWW Canonicalization - Redirect www to non-www
+https://www.lacortedilaura.it/* https://lacortedilaura.it/:splat 301
+http://www.lacortedilaura.it/* https://lacortedilaura.it/:splat 301
+
+# Ensure HTTPS
+http://lacortedilaura.it/* https://lacortedilaura.it/:splat 301

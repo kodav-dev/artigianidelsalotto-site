@@ -1,0 +1,44 @@
+---
+interface Props {
+  siteId?: string;
+  policyUrl?: string;
+  text?: string;
+  acceptLabel?: string;
+  declineLabel?: string;
+  position?: "top" | "bottom";
+}
+
+const {
+  siteId = "lacortedilaura",
+  policyUrl = "/cookie-policy",
+  text = 'Questo sito utilizza cookie tecnici e di profilazione. Cliccando su "Accetta" permetti il loro utilizzo.',
+  acceptLabel = "Accetta",
+  declineLabel = "Rifiuta",
+  position = "bottom",
+} = Astro.props;
+---
+
+<!-- Cookie Banner -->
+<marfcode-cookie-banner
+  site-id={siteId}
+  policy-url={policyUrl}
+  text={text}
+  accept-label={acceptLabel}
+  decline-label={declineLabel}
+  position={position}></marfcode-cookie-banner>
+
+<!-- Includi lo script in modo differito -->
+<script is:inline>
+  function loadCookieBanner() {
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://cookiebanner.marf.cloud/assets/cookiebanner.js';
+    document.body.appendChild(script);
+  }
+
+  if (document.readyState === 'complete') {
+    loadCookieBanner();
+  } else {
+    window.addEventListener('load', loadCookieBanner);
+  }
+</script>

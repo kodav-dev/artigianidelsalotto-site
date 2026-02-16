@@ -1,0 +1,114 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import {
+    getLangFromUrl,
+    useTranslations,
+    getLocalizedPath,
+} from "@/i18n/utils";
+import { Image } from "astro:assets";
+import OneTypeMenu from "@/components/OneTypeMenu.astro";
+
+// Images
+import menuHero from "@/assets/menu/hero.webp";
+import ilMenuImage from "@/assets/menu/ilmenu.webp";
+import tartufoImage from "@/assets/menu/tartufo.webp";
+import antipastiScrittaImage from "@/assets/menu/antipasti-scritta.webp";
+import antipastoImage from "@/assets/menu/antipasto.png";
+import primiScrittaImage from "@/assets/menu/primi-scritta.webp";
+import secondiScrittaImage from "@/assets/menu/secondi-scritta.webp";
+import dolciScrittaImage from "@/assets/menu/dolci-scritta.webp";
+import dolceImage from "@/assets/menu/dolce.png";
+import primoImage from "@/assets/menu/primo.png";
+import secondoImage from "@/assets/menu/secondo.png";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentPath = getLocalizedPath("/menu", lang);
+---
+
+<BaseLayout
+    title={t("ilMenu.seo.title")}
+    description={t("ilMenu.seo.description")}
+    currentPath={currentPath}
+    lang={lang}
+    heroImage={menuHero}
+    H1_main={t("ilMenu.H1_main")}
+    H1_highlight={t("ilMenu.H1_highlight")}
+>
+    <main class="pt-24">
+        <section class="container mx-auto px-6 text-center mb-10">
+            <h2 class="text-4xl font-bold mb-6">{t("ilMenu.title")}</h2>
+            <p
+                class="text-lg text-slate-600 dark:text-white/75 max-w-6xl mx-auto"
+            >
+                {t("ilMenu.description")}
+            </p>
+        </section>
+
+        <!-- Incipit -->
+        <section
+            class="container flex flex-col items-center mx-auto px-6 text-center mb-16 sm:mb-24"
+        >
+            <div
+                class="flex flex-col sm:flex-row items-center gap-4 sm:gap-0 max-w-5xl w-full mx-auto mt-10 px-4 sm:px-8 md:px-15 py-6 sm:py-10 border border-black"
+            >
+                <Image
+                    src={tartufoImage}
+                    alt={t("ilMenu.title")}
+                    class="w-full max-w-[200px] sm:max-w-[255px]"
+                />
+                <article class="flex flex-col text-center sm:text-left sm:ml-8">
+                    <h2 class="text-base sm:text-md font-bold">
+                        {t("ilMenu.tartufo.title")}
+                    </h2>
+                    <p class="text-sm sm:text-base">
+                        {t("ilMenu.tartufo.description")}
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Menu Sections -->
+        <OneTypeMenu
+            category={t("home.menu.categories.antipasti")}
+            image={antipastoImage}
+            writtenImage={antipastiScrittaImage}
+            bgColor="bg-footer-bg"
+            textColor="text-white"
+            descColor="text-black"
+            imagePosition="left"
+        />
+
+        <OneTypeMenu
+            category={t("home.menu.categories.primi")}
+            image={primoImage}
+            writtenImage={primiScrittaImage}
+            bgColor="bg-white"
+            textColor="text-black"
+            descColor="text-black"
+            imagePosition="right"
+        />
+
+        <OneTypeMenu
+            category={t("home.menu.categories.secondi")}
+            image={secondoImage}
+            writtenImage={secondiScrittaImage}
+            bgColor="bg-footer-bg"
+            textColor="text-white"
+            descColor="text-black"
+            imagePosition="left"
+        />
+
+        <OneTypeMenu
+            category={t("home.menu.categories.dolci")}
+            image={dolceImage}
+            writtenImage={dolciScrittaImage}
+            bgColor="bg-white"
+            textColor="text-black"
+            descColor="text-black"
+            imagePosition="right"
+        />
+    </main>
+</BaseLayout>

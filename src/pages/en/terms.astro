@@ -1,0 +1,180 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@/i18n/utils";
+import homeHero from "@/assets/home/hero.webp";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+    title={t("terms.seo.title")}
+    description={t("terms.seo.description")}
+    lang={lang}
+    currentPath={getLocalizedPath("/terms", lang)}
+    heroImage={homeHero}
+    H1={t("footer.terms")}
+>
+    <main class="container mx-auto px-6 pt-12 pb-32">
+        <div class="max-w-4xl mx-auto prose dark:prose-invert">
+            <p class="text-gray-400 mb-8">Last update: January 12, 2026</p>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    1. Acceptance of Terms
+                </h2>
+                <p>
+                    By accessing and using the website lacortedilaura.it (hereinafter "the Site"),
+                    you fully and unconditionally accept these Terms of Service, as well as all applicable
+                    laws and regulations. If you do not accept these terms, please do not use the Site.
+                </p>
+                <p class="mt-4">
+                    The Site is operated by <strong>La Corte di Laura</strong>, located at
+                    Via Nicola Dorati 44, Località Granaiola, Bagni di Lucca (LU), Italy.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    2. Use of the Site
+                </h2>
+                <p>
+                    Users agree to use the Site in accordance with the law, these Terms of Service,
+                    and principles of good faith and fairness. Any use of the Site that may:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>Violate third-party rights or applicable laws</li>
+                    <li>Damage, disable, or compromise the Site's functionality</li>
+                    <li>Access or attempt to access restricted systems or areas</li>
+                    <li>Transmit viruses, malware, or harmful code</li>
+                    <li>Use bots, spiders, or unauthorized automated tools</li>
+                    <li>Collect or use information from other users without consent</li>
+                </ul>
+                <p class="mt-4">is strictly prohibited.</p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    3. Intellectual Property
+                </h2>
+                <p>
+                    All content on the Site, including but not limited to text, images, logos,
+                    graphics, videos, audio, and software, is the exclusive property of La Corte di Laura
+                    or its licensors and is protected by Italian and international copyright and
+                    intellectual property laws.
+                </p>
+                <p class="mt-4">
+                    Reproduction, distribution, modification, transmission, publication, or commercial
+                    use of the Site's content is prohibited without prior written authorization from
+                    La Corte di Laura, except for personal, non-commercial use.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    4. Reservation Services
+                </h2>
+                <p>
+                    Through the Site, users can submit reservation requests for dining services offered
+                    by La Corte di Laura. Reservation requests are subject to confirmation by the
+                    restaurant and do not constitute a binding commitment until such confirmation.
+                </p>
+                <p class="mt-4">
+                    La Corte di Laura reserves the right to refuse or cancel reservations in case of
+                    unavailability, errors in the reservation system, or for legitimate reasons.
+                    In case of cancellation, users will be promptly informed.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    5. Limitation of Liability
+                </h2>
+                <p>
+                    The Site's content and services are provided "as is" and "as available",
+                    without any warranty of any kind, express or implied, including but not limited to
+                    warranties of merchantability, fitness for a particular purpose, or non-infringement.
+                </p>
+                <p class="mt-4">
+                    La Corte di Laura does not guarantee that:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>The Site will be always available, accessible, uninterrupted, or error-free</li>
+                    <li>Defects will be corrected</li>
+                    <li>The Site is free from viruses or other harmful components</li>
+                    <li>Results obtained from using the Site will be accurate or reliable</li>
+                </ul>
+                <p class="mt-4">
+                    To the extent permitted by law, La Corte di Laura shall not be liable for direct,
+                    indirect, incidental, consequential, special, or punitive damages arising from the
+                    use or inability to use the Site, including but not limited to: loss of profits,
+                    loss of data, business interruption, or other commercial damages.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    6. Links to Third-Party Sites
+                </h2>
+                <p>
+                    The Site may contain links to third-party websites. These links are provided
+                    solely for user convenience. La Corte di Laura has no control over such external
+                    sites and is not responsible for their content, privacy policies, or practices.
+                </p>
+                <p class="mt-4">
+                    The inclusion of links to third-party sites does not imply endorsement or
+                    recommendation by La Corte di Laura. Users access such sites at their own risk.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    7. Privacy and Cookies
+                </h2>
+                <p>
+                    The use of personal data collected through the Site is governed by our
+                    <a href="/en/privacy" class="text-[#d9b130] hover:underline">Privacy Policy</a>.
+                    For information on the use of cookies, please see our
+                    <a href="/en/cookie-policy" class="text-[#d9b130] hover:underline">Cookie Policy</a>.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    8. Modifications to Terms
+                </h2>
+                <p>
+                    La Corte di Laura reserves the right to modify these Terms of Service at any time,
+                    without notice. Changes will become effective immediately upon publication on the Site.
+                    We recommend regularly consulting this page to stay updated.
+                </p>
+                <p class="mt-4">
+                    Continued use of the Site after the publication of changes constitutes acceptance
+                    of the new terms.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    9. Governing Law and Jurisdiction
+                </h2>
+                <p>
+                    These Terms of Service are governed by Italian law. For any dispute arising from
+                    the interpretation or execution of these terms, the Court of Lucca shall have
+                    exclusive jurisdiction.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    10. Contact
+                </h2>
+                <p>
+                    For any questions or clarifications regarding these Terms of Service, you can
+                    contact us at:
+                    <a href="mailto:info@lacortedilaura.it" class="text-[#d9b130] hover:underline">info@lacortedilaura.it</a>
+                </p>
+            </section>
+        </div>
+    </main>
+</BaseLayout>

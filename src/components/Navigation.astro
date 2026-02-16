@@ -1,0 +1,241 @@
+---
+import { Image } from "astro:assets";
+
+import {
+	getLangFromUrl,
+	useTranslations,
+	getLocalizedPath,
+	translatePath,
+} from "@/i18n/utils";
+
+import logo from "../assets/logo.webp";
+
+interface Props {
+	currentPath?: string;
+	lang?: "it" | "en";
+	itPath?: string;
+	enPath?: string;
+}
+
+const { currentPath = "", lang: propLang, itPath, enPath } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navItems = [
+	{ href: getLocalizedPath("/", lang), label: t("nav.home") },
+	{ href: getLocalizedPath("/menu", lang), label: t("nav.menu") },
+	{ href: getLocalizedPath("/our-story", lang), label: t("nav.ourStory") },
+	{ href: getLocalizedPath("/blog-di-laura", lang), label: t("nav.blog") },
+];
+---
+
+<!-- Navigation -->
+<nav
+	id="main-nav"
+	class="sticky top-0 z-70 transition-all duration-300 bg-black border-b border-white/5"
+>
+	<div class="container mx-auto px-6 py-6 flex items-center justify-between">
+		<!-- Mobile Menu Button -->
+		<button
+			id="mobile-menu-btn"
+			class="group md:hidden relative w-10 h-10 flex flex-col items-center justify-center hover:bg-white/10 transition-colors"
+			aria-label="Menu"
+		>
+			<div class="space-y-1.5 px-2">
+				<span
+					class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center group-[.active]:translate-y-2 group-[.active]:rotate-45"
+				></span>
+				<span
+					class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.active]:opacity-0"
+				></span>
+				<span
+					class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center group-[.active]:-translate-y-2 group-[.active]:-rotate-45"
+				></span>
+			</div>
+		</button>
+
+		<!-- Logo -->
+		<a
+			href={getLocalizedPath("/", lang)}
+			class="flex items-center gap-2 md:gap-3 transition-opacity hover:opacity-80"
+		>
+			<Image
+				src={logo}
+				alt="Logo"
+				width={60}
+				height={59}
+				widths={[40, 60, 120]}
+				sizes="(max-width: 768px) 40px, 60px"
+				class="w-10 h-auto md:w-[60px]"
+			/>
+			<div class="flex flex-row leading-none overflow-hidden">
+				<span class="text-sm md:text-lg text-white whitespace-nowrap"
+					>La Corte di</span
+				><span
+					class="text-sm md:text-lg text-white font-adelia ml-1 md:ml-0 whitespace-nowrap"
+					>Laura</span
+				>
+			</div>
+		</a>
+
+		<!-- Desktop Navigation -->
+		<div class="hidden md:flex items-center gap-8">
+			{
+				navItems.map((item) => (
+					<a
+						href={item.href}
+						class={`text-sm tracking-wide transition-colors ${
+							currentPath === item.href ||
+							currentPath.startsWith(item.href + "/")
+								? "text-yellow-laura font-semibold"
+								: "text-white/70 hover:text-yellow-laura"
+						}`}
+					>
+						{item.label}
+					</a>
+				))
+			}
+		</div>
+
+		<!-- Actions -->
+		<div class="flex items-center gap-3">
+			<!-- Language Switcher -->
+			<div class="relative">
+				<button
+					id="lang-toggle"
+					class="p-2 hover:bg-white/10 rounded-none transition-colors text-white flex items-center gap-1.5"
+				>
+					<span
+						class="text-xs font-bold uppercase tracking-widest bg-white/10 px-1.5 py-0.5"
+						>{lang}</span
+					>
+				</button>
+				<div
+					id="lang-menu"
+					class="hidden absolute right-0 mt-3 py-2 w-32 bg-slate-900/95 backdrop-blur-xl shadow-2xl border border-white/10 z-50"
+				>
+					<a
+						href={itPath || translatePath(currentPath, "it")}
+						class="block px-4 py-2.5 text-sm font-medium text-white hover:bg-yellow-laura/10 hover:text-[#d9b130] transition-colors"
+					>
+						🇮🇹 Italiano
+					</a>
+					<a
+						href={enPath || translatePath(currentPath, "en")}
+						class="block px-4 py-2.5 text-sm font-medium text-white hover:bg-#d9b130/10 hover:text-[#d9b130] transition-colors"
+					>
+						🇬🇧 English
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div
+	id="mobile-menu"
+	class="group fixed inset-0 z-60 bg-black opacity-0 pointer-events-none transition-all duration-300 md:hidden overflow-hidden"
+>
+	<div
+		class="flex flex-col items-center justify-center text-center w-full h-full overflow-y-auto"
+	>
+		<div class="space-y-8 px-6 py-8">
+			{
+				navItems.map((item, i) => (
+					<a
+						href={item.href}
+						style={`transition-delay: ${i * 70}ms`}
+						class={`block text-3xl sm:text-4xl font-black tracking-tighter transition-all duration-500 hover:text-yellow-laura whitespace-nowrap ${
+							currentPath === item.href ||
+							currentPath.startsWith(item.href + "/")
+								? "text-yellow-laura"
+								: "text-white"
+						} ${
+							/* Hidden by default, shown when menu is active */
+							"opacity-0 translate-y-4 group-[.active]:opacity-100 group-[.active]:translate-y-0"
+						}`}
+					>
+						{item.label}
+					</a>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	#mobile-menu.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+</style>
+
+<script>
+	function initNavigation() {
+		const nav = document.getElementById("main-nav");
+		const btn = document.getElementById("mobile-menu-btn");
+		const menu = document.getElementById("mobile-menu");
+		const langBtn = document.getElementById("lang-toggle");
+		const langMenu = document.getElementById("lang-menu");
+
+		if (!nav || !btn || !menu) return;
+
+		// Scroll handler with RAF to prevent forced reflow
+		let ticking = false;
+		let lastScrollY = 0;
+
+		const updateNavStyles = () => {
+			if (lastScrollY > 10) {
+				nav.classList.add("bg-black/80", "backdrop-blur-md");
+				nav.classList.remove("bg-black");
+			} else {
+				nav.classList.remove("bg-black/80", "backdrop-blur-md");
+				nav.classList.add("bg-black");
+			}
+			ticking = false;
+		};
+
+		const handleScroll = () => {
+			lastScrollY = window.scrollY;
+			if (!ticking) {
+				requestAnimationFrame(updateNavStyles);
+				ticking = true;
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		updateNavStyles();
+
+		// Mobile menu toggle
+		const toggleMenu = () => {
+			const isActive = btn.classList.toggle("active");
+			menu.classList.toggle("active");
+			document.body.style.overflow = isActive ? "hidden" : "";
+		};
+
+		// Avoid duplicate listeners by removing old one if it survives (not typical for Astro)
+		btn.removeEventListener("click", toggleMenu);
+		btn.addEventListener("click", toggleMenu);
+
+		// Language toggle
+		const toggleLang = (e: Event) => {
+			e.stopPropagation();
+			langMenu?.classList.toggle("hidden");
+		};
+
+		langBtn?.removeEventListener("click", toggleLang);
+		langBtn?.addEventListener("click", toggleLang);
+
+		// Close lang menu on outside click
+		document.addEventListener("click", () =>
+			langMenu?.classList.add("hidden"),
+		);
+	}
+
+	// Initialize on page load
+	initNavigation();
+
+	// Initialize after each View Transition swap
+	document.addEventListener("astro:after-swap", initNavigation);
+</script>

@@ -1,0 +1,182 @@
+---
+import BlogLayout from "@/layouts/BlogLayout.astro";
+import { Image } from "astro:assets";
+import { useTranslations, getLocalizedPath } from "@/i18n/utils";
+import { getCollection } from "astro:content";
+
+interface Props {
+	post: any;
+	lang: "it" | "en";
+}
+
+const { post, lang } = Astro.props;
+const { Content } = await post.render();
+
+// Find translated post for language switcher
+const allPosts = await getCollection("blog");
+const translatedPost = allPosts.find(
+	(p) =>
+		p.data.translationId === post.data.translationId &&
+		p.data.lang !== lang,
+);
+
+const itPath =
+	lang === "it"
+		? Astro.url.pathname
+		: translatedPost
+			? getLocalizedPath(
+					`/blog-di-laura/${translatedPost.slug.split("/").pop()}`,
+					"it",
+				)
+			: undefined;
+
+const enPath =
+	lang === "en"
+		? Astro.url.pathname
+		: translatedPost
+			? getLocalizedPath(
+					`/blog-di-laura/${translatedPost.slug.split("/").pop()}`,
+					"en",
+				)
+			: undefined;
+
+const formattedDate = new Intl.DateTimeFormat(
+	lang === "it" ? "it-IT" : "en-US",
+	{
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	},
+).format(post.data.pubDate);
+
+const t = useTranslations(lang);
+---
+
+<BlogLayout
+	title={`${post.data.title} - lacortedilaura.it`}
+	description={post.data.description}
+	image={post.data.image}
+	lang={lang}
+	publishedTime={post.data.pubDate?.toISOString()}
+	author={post.data.author}
+	tags={post.data.tags}
+	itPath={itPath}
+	enPath={enPath}
+>
+	<main class="container mx-auto px-6 py-24">
+		<div class="max-w-4xl mx-auto mb-8">
+			<a
+				href={getLocalizedPath("/blog-di-laura", lang)}
+				class="inline-flex items-center gap-2 text-slate-600 dark:text-gray-400 hover:text-[#d9b130] dark:hover:text-[#d9b130] transition-colors"
+			>
+				<svg
+					class="w-4 h-4"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M15 19l-7-7 7-7"></path>
+				</svg>
+				{t("blog.backToBlog")}
+			</a>
+		</div>
+
+		<article class="max-w-4xl mx-auto">
+			<header class="mb-12">
+				<div class="mb-6">
+					{
+						post.data.tags && post.data.tags.length > 0 && (
+							<div class="flex flex-wrap gap-2 mb-6">
+								{post.data.tags.map((tag: string) => (
+									<span class="px-3 py-1 text-sm bg-yellow-site/10 text-yellow-site dark:text-yellow-site border border-yellow-site/20">
+										{tag}
+									</span>
+								))}
+							</div>
+						)
+					}
+				</div>
+
+				<h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+					{post.data.title}
+				</h1>
+
+				<div
+					class="flex items-center gap-4 text-slate-600 dark:text-gray-400 text-sm"
+				>
+					<span>{post.data.author}</span>
+					<span>•</span>
+					<time datetime={post.data.pubDate.toISOString()}>
+						{formattedDate}
+					</time>
+				</div>
+			</header>
+
+			{
+				post.data.image && (
+					<div class="mb-12 aspect-21/9 max-h-[400px] overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl">
+						<Image
+							src={post.data.image}
+							alt={post.data.title}
+							width={1024}
+							height={440}
+							quality={75}
+							loading="eager"
+							class="w-full h-full object-cover"
+						/>
+					</div>
+				)
+			}
+
+			<div
+				class="blog-content prose dark:prose-invert prose-xl max-w-none
+				prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-black prose-headings:tracking-tight
+				prose-h1:text-4xl prose-h1:mb-10 prose-h1:mt-16
+				prose-h2:text-3xl prose-h2:mb-8 prose-h2:mt-14 prose-h2:pb-4 prose-h2:border-b prose-h2:border-slate-200 dark:prose-h2:border-white/10
+				prose-h3:text-2xl prose-h3:mb-6 prose-h3:mt-10
+				prose-p:text-slate-700 dark:prose-p:text-gray-300 prose-p:leading-[1.8] text-justify md:text-left
+				prose-a:text-[#d9b130] dark:prose-a:text-[#d9b130] prose-a:no-underline hover:prose-a:underline hover:prose-a:decoration-2 hover:prose-a:underline-offset-4 transition-all
+				prose-strong:text-slate-900 dark:prose-strong:text-white prose-strong:font-bold
+				prose-code:text-[#d9b130] dark:prose-code:text-[#d9b130] prose-code:bg-[#d9b130]/10 dark:prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none prose-code:font-mono prose-code:text-[0.9em]
+				prose-pre:bg-slate-900 dark:prose-pre:bg-black prose-pre:border prose-pre:border-white/10 prose-pre:p-8 prose-pre:shadow-2xl prose-pre:my-12
+				prose-ul:text-slate-700 dark:prose-ul:text-gray-300 prose-ul:mb-8 prose-ul:list-disc prose-ul:pl-6
+				prose-ol:text-slate-700 dark:prose-ol:text-gray-300 prose-ol:mb-8 prose-ol:list-decimal prose-ol:pl-6
+				prose-li:mb-4 prose-li:leading-relaxed
+				prose-blockquote:border-l-4 prose-blockquote:border-[#d9b130] prose-blockquote:bg-[#d9b130]/5 prose-blockquote:text-slate-600 dark:prose-blockquote:text-gray-300 prose-blockquote:italic prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:my-10
+				prose-hr:border-slate-200 dark:prose-hr:border-white/10 prose-hr:my-16
+				prose-img:shadow-2xl prose-img:my-12"
+			>
+				<Content />
+			</div>
+
+			<footer
+				class="mt-16 pt-8 border-t border-slate-200 dark:border-white/10"
+			>
+				<div class="flex items-center justify-between">
+					<a
+						href={getLocalizedPath("/blog-di-laura", lang)}
+						class="inline-flex items-center gap-2 text-[#d9b130] dark:text-[#d9b130] hover:text-[#d9b130]/80 transition-colors"
+					>
+						<svg
+							class="w-4 h-4"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M15 19l-7-7 7-7"></path>
+						</svg>
+						{t("blog.backToBlog")}
+					</a>
+				</div>
+			</footer>
+		</article>
+	</main>
+</BlogLayout>

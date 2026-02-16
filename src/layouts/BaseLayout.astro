@@ -1,0 +1,107 @@
+---
+import "../styles/global.css";
+import Navigation from "@/components/Navigation.astro";
+import Footer from "@/components/Footer.astro";
+import SEO from "@/components/SEO.astro";
+import CookieBanner from "@/components/CookieBanner.astro";
+import GTM from "@/components/GTM.astro";
+import GTMNoScript from "@/components/GTMNoScript.astro";
+import { Image } from "astro:assets";
+
+interface Props {
+	title: string;
+	description: string;
+	currentPath?: string;
+	lang?: string;
+	image?: string;
+	heroImage?: any;
+	noindex?: boolean;
+	H1?: string;
+	H1_main?: string;
+	H1_highlight?: string;
+}
+
+const {
+	title,
+	description,
+	currentPath = "",
+	lang = "it",
+	image,
+	heroImage,
+	noindex,
+	H1,
+	H1_main,
+	H1_highlight,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="dns-prefetch" href="https://cookiebanner.marf.cloud" />
+		<link rel="preconnect" href="https://cookiebanner.marf.cloud" />
+		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+		<link rel="preconnect" href="https://www.googletagmanager.com" />
+		<GTM />
+		<SEO
+			title={title}
+			description={description}
+			image={image}
+			noindex={noindex}
+		/>
+		{!noindex && (
+			<meta
+				name="robots"
+				content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+			/>
+		)}
+	</head>
+
+	<body
+		class="bg-white text-slate-900 overflow-x-hidden transition-colors duration-200"
+	>
+		<GTMNoScript />
+
+		<Navigation currentPath={currentPath} />
+
+		<section class="relative w-full h-[460px] overflow-hidden bg-black">
+			{
+				heroImage || image ? (
+					<>
+						<Image
+							src={heroImage || image}
+							alt={title}
+							class="w-full h-full object-cover object-center"
+							loading="eager"
+							fetchpriority="high"
+							widths={[640, 750, 1024, 1400]}
+							sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1400px"
+						/>
+						<div class="absolute inset-0 bg-black/5" />
+					</>
+				) : (
+					<div class="w-full h-full bg-black" />
+				)
+			}
+
+			<div
+				class="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+			>
+				<h1 class="flex flex-col items-center gap-2">
+					<span
+						class="text-xl md:text-2xl lg:text-5xl tracking-tighter text-white font-adelia font-thin"
+					>
+						{H1_main} <span class="text-[#d9b130]">{H1_highlight}</span>
+					</span>
+				</h1>
+			</div>
+		</section>
+
+		<slot />
+
+		<Footer />
+
+		<CookieBanner siteId="lacortedilaura" />
+	</body>
+</html>

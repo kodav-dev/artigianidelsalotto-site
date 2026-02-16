@@ -1,0 +1,185 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@/i18n/utils";
+import homeHero from "@/assets/home/hero.webp";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+    title={t("terms.seo.title")}
+    description={t("terms.seo.description")}
+    lang={lang}
+    currentPath={getLocalizedPath("/terms", lang)}
+    heroImage={homeHero}
+    H1={t("footer.terms")}
+>
+    <main class="container mx-auto px-6 pt-12 pb-32">
+        <div class="max-w-4xl mx-auto prose dark:prose-invert">
+            <p class="text-gray-400 mb-8">
+                Ultimo aggiornamento: 12 Gennaio 2026
+            </p>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    1. Accettazione dei Termini
+                </h2>
+                <p>
+                    Accedendo e utilizzando il sito web lacortedilaura.it (di seguito "il Sito"),
+                    l'utente accetta integralmente e senza riserve i presenti Termini di Servizio,
+                    oltre a tutte le leggi e i regolamenti applicabili. Se non si accettano questi termini,
+                    si prega di non utilizzare il Sito.
+                </p>
+                <p class="mt-4">
+                    Il Sito è gestito da <strong>La Corte di Laura</strong>, con sede in
+                    Via Nicola Dorati 44, Località Granaiola, Bagni di Lucca (LU).
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    2. Utilizzo del Sito
+                </h2>
+                <p>
+                    L'utente si impegna a utilizzare il Sito in modo conforme alla legge,
+                    ai presenti Termini di Servizio e ai principi di buona fede e correttezza.
+                    È vietato qualsiasi uso del Sito che possa:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>Violare diritti di terzi o leggi applicabili</li>
+                    <li>Danneggiare, disabilitare o compromettere il funzionamento del Sito</li>
+                    <li>Accedere o tentare di accedere a sistemi o aree riservate</li>
+                    <li>Trasmettere virus, malware o codice dannoso</li>
+                    <li>Utilizzare bot, spider o strumenti automatizzati non autorizzati</li>
+                    <li>Raccogliere o utilizzare informazioni di altri utenti senza consenso</li>
+                </ul>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    3. Proprietà Intellettuale
+                </h2>
+                <p>
+                    Tutti i contenuti presenti sul Sito, inclusi ma non limitati a testi, immagini,
+                    loghi, grafiche, video, audio e software, sono di proprietà esclusiva di
+                    La Corte di Laura o dei suoi licenzianti e sono protetti dalle leggi italiane
+                    e internazionali sul diritto d'autore e sulla proprietà intellettuale.
+                </p>
+                <p class="mt-4">
+                    È vietata la riproduzione, distribuzione, modifica, trasmissione, pubblicazione
+                    o utilizzo commerciale dei contenuti del Sito senza la preventiva autorizzazione
+                    scritta di La Corte di Laura, salvo che per uso personale e non commerciale.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    4. Servizi di Prenotazione
+                </h2>
+                <p>
+                    Attraverso il Sito è possibile effettuare richieste di prenotazione per i servizi
+                    di ristorazione offerti da La Corte di Laura. Le richieste di prenotazione sono
+                    soggette a conferma da parte del ristorante e non costituiscono impegno vincolante
+                    fino a tale conferma.
+                </p>
+                <p class="mt-4">
+                    La Corte di Laura si riserva il diritto di rifiutare o annullare prenotazioni
+                    in caso di indisponibilità, errori nel sistema di prenotazione o per motivi legittimi.
+                    In caso di annullamento, l'utente sarà tempestivamente informato.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    5. Limitazione di Responsabilità
+                </h2>
+                <p>
+                    I contenuti e i servizi del Sito sono forniti "così come sono" e "come disponibili",
+                    senza alcuna garanzia di alcun tipo, espressa o implicita, incluse ma non limitate
+                    a garanzie di commerciabilità, idoneità per un particolare scopo, o non violazione.
+                </p>
+                <p class="mt-4">
+                    La Corte di Laura non garantisce che:
+                </p>
+                <ul class="list-disc ml-6 mt-4 space-y-2">
+                    <li>Il Sito sia sempre disponibile, accessibile, ininterrotto o privo di errori</li>
+                    <li>I difetti saranno corretti</li>
+                    <li>Il Sito sia privo di virus o altri componenti dannosi</li>
+                    <li>I risultati ottenuti dall'uso del Sito siano accurati o affidabili</li>
+                </ul>
+                <p class="mt-4">
+                    Nei limiti consentiti dalla legge, La Corte di Laura non sarà responsabile per
+                    danni diretti, indiretti, incidentali, consequenziali, speciali o punitivi derivanti
+                    dall'uso o dall'impossibilità di utilizzare il Sito, inclusi ma non limitati a:
+                    perdita di profitti, perdita di dati, interruzione dell'attività o altri danni commerciali.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    6. Link a Siti Terzi
+                </h2>
+                <p>
+                    Il Sito può contenere link a siti web di terze parti. Questi link sono forniti
+                    esclusivamente per comodità dell'utente. La Corte di Laura non ha controllo su
+                    tali siti esterni e non è responsabile per i loro contenuti, privacy policy o pratiche.
+                </p>
+                <p class="mt-4">
+                    L'inclusione di link a siti terzi non implica approvazione o raccomandazione da parte
+                    di La Corte di Laura. L'utente accede a tali siti a proprio rischio.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    7. Privacy e Cookie
+                </h2>
+                <p>
+                    L'utilizzo dei dati personali raccolti attraverso il Sito è disciplinato dalla nostra
+                    <a href="/privacy" class="text-[#d9b130] hover:underline">Privacy Policy</a>.
+                    Per informazioni sull'uso dei cookie, consultare la nostra
+                    <a href="/cookie-policy" class="text-[#d9b130] hover:underline">Cookie Policy</a>.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    8. Modifiche ai Termini
+                </h2>
+                <p>
+                    La Corte di Laura si riserva il diritto di modificare i presenti Termini di Servizio
+                    in qualsiasi momento, senza preavviso. Le modifiche entreranno in vigore immediatamente
+                    dopo la pubblicazione sul Sito. Si consiglia di consultare regolarmente questa pagina
+                    per rimanere aggiornati.
+                </p>
+                <p class="mt-4">
+                    L'uso continuato del Sito dopo la pubblicazione delle modifiche costituisce accettazione
+                    dei nuovi termini.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    9. Legge Applicabile e Foro Competente
+                </h2>
+                <p>
+                    I presenti Termini di Servizio sono regolati dalla legge italiana. Per qualsiasi
+                    controversia derivante dall'interpretazione o esecuzione dei presenti termini,
+                    sarà competente in via esclusiva il Foro di Lucca.
+                </p>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4 text-[#d9b130]">
+                    10. Contatti
+                </h2>
+                <p>
+                    Per qualsiasi domanda o chiarimento sui presenti Termini di Servizio, potete
+                    contattarci all'indirizzo:
+                    <a href="mailto:info@lacortedilaura.it" class="text-[#d9b130] hover:underline">info@lacortedilaura.it</a>
+                </p>
+            </section>
+        </div>
+    </main>
+</BaseLayout>
