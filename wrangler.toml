@@ -2,3 +2,4 @@
 # Secrets are loaded from .dev.vars file
 name = "artigianidelsalotto-site"
 compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
