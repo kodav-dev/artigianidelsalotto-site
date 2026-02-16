@@ -38,11 +38,11 @@ export const CATEGORIES: Category[] = [
 export const PRODUCTS: Product[] = [
   // Salotti
   {
-    id: "salotto-abudhabi",
-    slug: "abudhabi",
+    id: "salotto-s001",
+    slug: "s001",
     category: "salotti",
-    name: { it: "Abudhabi", en: "Abudhabi" },
-    heroTitle: { it: "Collezione Abudhabi", en: "Abudhabi Collection" },
+    name: { it: "S001", en: "S001" },
+    heroTitle: { it: "Modello S001", en: "Model S001" },
     heroSubtitle: { it: "Eleganza modulare per il tuo living", en: "Modular elegance for your living space" },
     description: {
       it: "Divano modulare a 3 posti dal design elegante e raffinato. Disponibile in diverse configurazioni per adattarsi ad ogni ambiente.",
@@ -52,11 +52,11 @@ export const PRODUCTS: Product[] = [
     detailImages: [imgDubai, imgRitz],
   },
   {
-    id: "salotto-dubai",
-    slug: "dubai",
+    id: "salotto-s002",
+    slug: "s002",
     category: "salotti",
-    name: { it: "Dubai", en: "Dubai" },
-    heroTitle: { it: "Collezione Dubai", en: "Dubai Collection" },
+    name: { it: "S002", en: "S002" },
+    heroTitle: { it: "Modello S002", en: "Model S002" },
     heroSubtitle: { it: "Lusso e comfort senza compromessi", en: "Luxury and comfort without compromise" },
     description: {
       it: "Salotto angolare di lusso con imbottitura ad alta densità. Comfort e stile per il vostro living.",
@@ -67,11 +67,11 @@ export const PRODUCTS: Product[] = [
   },
   // Poltrone
   {
-    id: "poltrona-aston",
-    slug: "aston",
+    id: "poltrona-p001",
+    slug: "p001",
     category: "poltrone",
-    name: { it: "Aston", en: "Aston" },
-    heroTitle: { it: "Collezione Aston", en: "Aston Collection" },
+    name: { it: "P001", en: "P001" },
+    heroTitle: { it: "Modello P001", en: "Model P001" },
     heroSubtitle: { it: "Design contemporaneo, comfort senza tempo", en: "Contemporary design, timeless comfort" },
     description: {
       it: "Poltrona dal design contemporaneo con struttura in legno massello. Seduta ampia e avvolgente.",
@@ -81,11 +81,11 @@ export const PRODUCTS: Product[] = [
     detailImages: [imgRitz, imgHero],
   },
   {
-    id: "poltrona-ritz",
-    slug: "ritz",
+    id: "poltrona-p002",
+    slug: "p002",
     category: "poltrone",
-    name: { it: "Ritz", en: "Ritz" },
-    heroTitle: { it: "Collezione Ritz", en: "Ritz Collection" },
+    name: { it: "P002", en: "P002" },
+    heroTitle: { it: "Modello P002", en: "Model P002" },
     heroSubtitle: { it: "Eleganza classica rivisitata", en: "Revisited classic elegance" },
     description: {
       it: "Poltrona classica rivisitata in chiave moderna. Eleganza senza tempo per ogni ambiente.",
@@ -96,11 +96,11 @@ export const PRODUCTS: Product[] = [
   },
   // Divani Letto
   {
-    id: "divano-letto-comfort",
-    slug: "comfort",
+    id: "divano-letto-d001",
+    slug: "d001",
     category: "divani-letto",
-    name: { it: "Comfort", en: "Comfort" },
-    heroTitle: { it: "Collezione Comfort", en: "Comfort Collection" },
+    name: { it: "D001", en: "D001" },
+    heroTitle: { it: "Modello D001", en: "Model D001" },
     heroSubtitle: { it: "Due funzioni, un unico design", en: "Two functions, one design" },
     description: {
       it: "Divano letto con meccanismo di apertura facile e materasso ortopedico. Ideale per gli ospiti.",
@@ -110,11 +110,11 @@ export const PRODUCTS: Product[] = [
     detailImages: [imgAbudhabi, imgRitz],
   },
   {
-    id: "divano-letto-elegance",
-    slug: "elegance",
+    id: "divano-letto-d002",
+    slug: "d002",
     category: "divani-letto",
-    name: { it: "Elegance", en: "Elegance" },
-    heroTitle: { it: "Collezione Elegance", en: "Elegance Collection" },
+    name: { it: "D002", en: "D002" },
+    heroTitle: { it: "Modello D002", en: "Model D002" },
     heroSubtitle: { it: "Raffinatezza che si trasforma", en: "Refinement that transforms" },
     description: {
       it: "Divano letto dal design raffinato che non rinuncia al comfort. Trasformazione semplice e veloce.",
@@ -125,11 +125,11 @@ export const PRODUCTS: Product[] = [
   },
   // Letti
   {
-    id: "letto-royal",
-    slug: "royal",
+    id: "letto-l001",
+    slug: "l001",
     category: "letti",
-    name: { it: "Royal", en: "Royal" },
-    heroTitle: { it: "Collezione Royal", en: "Royal Collection" },
+    name: { it: "L001", en: "L001" },
+    heroTitle: { it: "Modello L001", en: "Model L001" },
     heroSubtitle: { it: "Il riposo diventa arte", en: "Rest becomes art" },
     description: {
       it: "Letto matrimoniale con testiera imbottita e contenitore. Design moderno e funzionale.",
@@ -139,11 +139,11 @@ export const PRODUCTS: Product[] = [
     detailImages: [imgAbudhabi, imgHero],
   },
   {
-    id: "letto-dream",
-    slug: "dream",
+    id: "letto-l002",
+    slug: "l002",
     category: "letti",
-    name: { it: "Dream", en: "Dream" },
-    heroTitle: { it: "Collezione Dream", en: "Dream Collection" },
+    name: { it: "L002", en: "L002" },
+    heroTitle: { it: "Modello L002", en: "Model L002" },
     heroSubtitle: { it: "Semplicità e comfort per ogni notte", en: "Simplicity and comfort for every night" },
     description: {
       it: "Letto dal design minimalista con struttura rinforzata. Comfort e semplicità per il vostro riposo.",
@@ -154,11 +154,11 @@ export const PRODUCTS: Product[] = [
   },
   // Poltrone Relax
   {
-    id: "relax-supreme",
-    slug: "supreme",
+    id: "relax-r001",
+    slug: "r001",
     category: "poltrone-relax",
-    name: { it: "Supreme", en: "Supreme" },
-    heroTitle: { it: "Collezione Supreme", en: "Supreme Collection" },
+    name: { it: "R001", en: "R001" },
+    heroTitle: { it: "Modello R001", en: "Model R001" },
     heroSubtitle: { it: "Il massimo del relax artigianale", en: "The ultimate in artisanal relaxation" },
     description: {
       it: "Poltrona relax con meccanismo reclinabile manuale. Massimo comfort per i momenti di relax.",
@@ -168,11 +168,11 @@ export const PRODUCTS: Product[] = [
     detailImages: [imgAbudhabi, imgDubai],
   },
   {
-    id: "relax-premium",
-    slug: "premium",
+    id: "relax-r002",
+    slug: "r002",
     category: "poltrone-relax",
-    name: { it: "Premium", en: "Premium" },
-    heroTitle: { it: "Collezione Premium", en: "Premium Collection" },
+    name: { it: "R002", en: "R002" },
+    heroTitle: { it: "Modello R002", en: "Model R002" },
     heroSubtitle: { it: "Tecnologia e tradizione italiana", en: "Technology and Italian tradition" },
     description: {
       it: "Poltrona relax elettrica con poggiapiedi integrato. Tecnologia e artigianato italiano.",
@@ -183,11 +183,11 @@ export const PRODUCTS: Product[] = [
   },
   // Materassi
   {
-    id: "materasso-ortho",
-    slug: "ortho",
+    id: "materasso-m001",
+    slug: "m001",
     category: "materassi",
-    name: { it: "Ortho", en: "Ortho" },
-    heroTitle: { it: "Collezione Ortho", en: "Ortho Collection" },
+    name: { it: "M001", en: "M001" },
+    heroTitle: { it: "Modello M001", en: "Model M001" },
     heroSubtitle: { it: "Sostegno ottimale, sonno rigenerante", en: "Optimal support, regenerating sleep" },
     description: {
       it: "Materasso ortopedico a molle insacchettate. Sostegno ottimale per un sonno rigenerante.",
@@ -197,11 +197,11 @@ export const PRODUCTS: Product[] = [
     detailImages: [imgRitz, imgAbudhabi],
   },
   {
-    id: "materasso-memory",
-    slug: "memory",
+    id: "materasso-m002",
+    slug: "m002",
     category: "materassi",
-    name: { it: "Memory", en: "Memory" },
-    heroTitle: { it: "Collezione Memory", en: "Memory Collection" },
+    name: { it: "M002", en: "M002" },
+    heroTitle: { it: "Modello M002", en: "Model M002" },
     heroSubtitle: { it: "Comfort personalizzato per ogni corpo", en: "Personalized comfort for every body" },
     description: {
       it: "Materasso in memory foam ad alta densità. Si adatta alla forma del corpo per un comfort personalizzato.",
