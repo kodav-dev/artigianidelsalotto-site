@@ -11,6 +11,7 @@ export default defineConfig({
   site: 'https://artigianidelsalotto.marf.click',
   trailingSlash: 'always',
   adapter: cloudflare({
+    imageService: 'compile',
     platformProxy: {
       enabled: true,
       persist: {
@@ -38,11 +39,7 @@ export default defineConfig({
     }),
   ],
 
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp'
-    }
-  },
+
   i18n: {
     defaultLocale: "it",
     locales: ["it", "en"],

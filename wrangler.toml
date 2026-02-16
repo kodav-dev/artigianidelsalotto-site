@@ -1,4 +1,4 @@
 # Wrangler configuration for local development
 # Secrets are loaded from .dev.vars file
-name = "lacortedilaura-site"
+name = "artigianidelsalotto-site"
 compatibility_date = "2024-01-01"
