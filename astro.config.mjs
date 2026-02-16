@@ -9,7 +9,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://lacortedilaura.it',
+  site: 'https://artigianidelsalotto.marf.click',
   trailingSlash: 'always',
   adapter: cloudflare({
     platformProxy: {
@@ -21,8 +21,8 @@ export default defineConfig({
   }),
 
   vite: {
-      plugins: [tailwindcss()],
-	},
+    plugins: [tailwindcss()],
+  },
   build: {
     inlineStylesheets: 'always',
   },

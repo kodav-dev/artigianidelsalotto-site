@@ -23,9 +23,7 @@ const t = useTranslations(lang);
 
 const navItems = [
 	{ href: getLocalizedPath("/", lang), label: t("nav.home") },
-	{ href: getLocalizedPath("/menu", lang), label: t("nav.menu") },
-	{ href: getLocalizedPath("/our-story", lang), label: t("nav.ourStory") },
-	{ href: getLocalizedPath("/blog-di-laura", lang), label: t("nav.blog") },
+	{ href: "#booking-form", label: t("footer.bookTableCTA") },
 ];
 ---
 
@@ -68,12 +66,14 @@ const navItems = [
 				sizes="(max-width: 768px) 40px, 60px"
 				class="w-10 h-auto md:w-[60px]"
 			/>
-			<div class="flex flex-row leading-none overflow-hidden">
+			<div
+				class="flex flex-row leading-none overflow-hidden uppercase font-bold tracking-tighter"
+			>
 				<span class="text-sm md:text-lg text-white whitespace-nowrap"
-					>La Corte di</span
+					>Artigiani del</span
 				><span
-					class="text-sm md:text-lg text-white font-adelia ml-1 md:ml-0 whitespace-nowrap"
-					>Laura</span
+					class="text-sm md:text-lg text-[#d9b130] ml-1 whitespace-nowrap"
+					>Salotto</span
 				>
 			</div>
 		</a>

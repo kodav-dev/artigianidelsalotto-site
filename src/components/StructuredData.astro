@@ -1,72 +1,45 @@
 ---
 interface Props {
-	type?: "restaurant" | "article" | "menu" | "breadcrumb" | "website";
+	type?: "localbusiness" | "article" | "breadcrumb" | "website";
 	data?: any;
 }
 
-const { type = "restaurant", data = {} } = Astro.props;
-const siteUrl = Astro.site?.toString() || "https://lacortedilaura.it";
+const { type = "localbusiness", data = {} } = Astro.props;
+const siteUrl =
+	Astro.site?.toString() || "https://artigianidelsalotto.marf.click";
 
-// Dati base del ristorante
-const restaurantBase = {
+// Dati base dell'attività
+const businessBase = {
 	"@context": "https://schema.org",
-	"@type": "Restaurant",
-	name: "La Corte di Laura",
-	description:
-		"Ristorante tradizionale italiano con cucina autentica e atmosphere accogliente",
+	"@type": "LocalBusiness",
+	name: "Artigiani del Salotto",
+	description: "Produttore artigianale di divani e poltrone di alta qualità.",
 	url: siteUrl,
-	telephone: "+390583088818",
-	mobilePhone: "+393296752634",
-	email: "info@lacortedilaura.it",
+	telephone: "+39000000000", // Placeholder
+	email: "info@artigianidelsalotto.it", // Placeholder
 	address: {
 		"@type": "PostalAddress",
-		streetAddress: "Via Nicola Dorati, 44",
-		addressLocality: "Granaiola (Bagni di Lucca)",
-		postalCode: "54027",
+		streetAddress: "TBD",
+		addressLocality: "TBD",
+		postalCode: "00000",
 		addressCountry: "IT",
 	},
-	geo: {
-		"@type": "GeoCoordinates",
-		latitude: "44.0177436",
-		longitude: "10.5726613",
-	},
-	servesCuisine: ["Italian", "Mediterranean"],
-	priceRange: "$$",
 	image: `${siteUrl}/favicon.png`,
 	logo: `${siteUrl}/favicon.png`,
-	sameAs: [
-		"https://www.facebook.com/profile.php?id=61573481385415&locale=it_IT",
-		"https://www.instagram.com/lacortedilaura",
-	],
-	openingHoursSpecification: [
-		{
-			"@type": "OpeningHoursSpecification",
-			dayOfWeek: ["Sunday"],
-			opens: "12:00",
-			closes: "22:00",
-		},
-		{
-			"@type": "OpeningHoursSpecification",
-			dayOfWeek: ["Thursday", "Friday", "Saturday"],
-			opens: "19:00",
-			closes: "22:00",
-		},
-	],
-	acceptsReservations: true,
 };
 
 let structuredData: any;
 
 switch (type) {
-	case "restaurant":
-		structuredData = restaurantBase;
+	case "localbusiness":
+		structuredData = businessBase;
 		break;
-        
+
 	case "website":
 		structuredData = {
 			"@context": "https://schema.org",
 			"@type": "WebSite",
-			name: "Ristorante - La Corte di Laura",
+			name: "Artigiani del Salotto",
 			url: siteUrl,
 		};
 		break;
@@ -83,11 +56,11 @@ switch (type) {
 				: `${siteUrl}/favicon.png`,
 			author: {
 				"@type": "Person",
-				name: data.author || "Laura",
+				name: data.author || "Artigiani del Salotto",
 			},
 			publisher: {
 				"@type": "Organization",
-				name: "La Corte di Laura",
+				name: "Artigiani del Salotto",
 				logo: {
 					"@type": "ImageObject",
 					url: `${siteUrl}/favicon.png`,
@@ -100,17 +73,6 @@ switch (type) {
 				"@id": `${siteUrl}${Astro.url.pathname}`,
 			},
 			inLanguage: lang,
-		};
-		break;
-
-	case "menu":
-		structuredData = {
-			"@context": "https://schema.org",
-			"@type": "Menu",
-			name: data.menuName || "Menu - La Corte di Laura",
-			description:
-				data.menuDescription || "Il nostro menu tradizionale italiano",
-			hasMenuSection: data.menuSections || [],
 		};
 		break;
 

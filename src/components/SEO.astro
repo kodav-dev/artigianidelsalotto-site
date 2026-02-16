@@ -27,7 +27,8 @@ const {
 	article,
 } = Astro.props;
 
-const siteUrl = Astro.site?.toString() || "https://lacortedilaura.it";
+const siteUrl =
+	Astro.site?.toString() || "https://artigianidelsalotto.marf.click";
 const ensureTrailingSlash = (path: string) => {
 	if (path === "/") return path;
 	return path.endsWith("/") ? path : `${path}/`;
@@ -62,8 +63,8 @@ const showCanonical = !noindex || canonical;
 	title={title}
 	description={description}
 	canonical={showCanonical ? canonicalURL : undefined}
-	noindex={noindex}
-	nofollow={nofollow}
+	noindex={true}
+	nofollow={true}
 	openGraph={{
 		basic: {
 			title: title,
@@ -74,7 +75,7 @@ const showCanonical = !noindex || canonical;
 		optional: {
 			description: description,
 			locale: lang === "en" ? "en_US" : "it_IT",
-			siteName: "Ristorante - La Corte di Laura",
+			siteName: "Artigiani del Salotto",
 		},
 		...(article && {
 			article: {
@@ -129,21 +130,25 @@ const showCanonical = !noindex || canonical;
 	}}
 />
 
-{article ? (
-	<StructuredData
-		type="article"
-		data={{
-			title,
-			description,
-			image,
-			...article
-		}}
-	/>
-) : (
-	<>
-		<StructuredData type="restaurant" />
-		{(Astro.url.pathname === "/" || Astro.url.pathname === "/en" || Astro.url.pathname === "/en/") && (
-			<StructuredData type="website" />
-		)}
-	</>
-)}
+{
+	article ? (
+		<StructuredData
+			type="article"
+			data={{
+				title,
+				description,
+				image,
+				...article,
+			}}
+		/>
+	) : (
+		<>
+			<StructuredData type="localbusiness" />
+			{(Astro.url.pathname === "/" ||
+				Astro.url.pathname === "/en" ||
+				Astro.url.pathname === "/en/") && (
+				<StructuredData type="website" />
+			)}
+		</>
+	)
+}

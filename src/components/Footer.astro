@@ -21,7 +21,7 @@ const t = useTranslations(lang);
 <footer>
 	<!-- First Row: Info & Form -->
 	<div
-		class="w-full px-4 sm:px-6 md:px-12 lg:px-24 py-12 sm:py-20 min-h-[400px] bg-[#8b947e]"
+		class="w-full px-4 sm:px-6 md:px-12 lg:px-24 py-12 sm:py-20 min-h-[400px] bg-slate-100"
 	>
 		<div
 			class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start lg:items-center max-w-7xl mx-auto"
@@ -41,20 +41,31 @@ const t = useTranslations(lang);
 				/>
 
 				<div class="space-y-3">
+					<div
+						class="flex flex-row leading-none overflow-hidden uppercase font-bold tracking-tighter text-2xl mb-4"
+					>
+						<span class="text-slate-900 whitespace-nowrap"
+							>Artigiani del</span
+						>
+						<span class="text-[#d9b130] ml-2 whitespace-nowrap"
+							>Salotto</span
+						>
+					</div>
+
 					<!-- Indirizzo -->
 					<div>
-						<p class="text-black text-base sm:text-md">
+						<p class="text-slate-600 text-base sm:text-md">
 							{t("footer.address")},<br />{t("footer.city")}
 						</p>
 					</div>
 
 					<!-- Telefono -->
 					<div
-						class="text-black text-base sm:text-md flex flex-row flex-wrap gap-4 sm:gap-6 justify-center"
+						class="text-slate-900 text-base sm:text-md flex flex-row flex-wrap gap-4 sm:gap-6 justify-center"
 					>
 						<a
-							href="tel:+390583088818"
-							class="hover:text-[#3c4135] transition-colors flex items-center gap-2 justify-center"
+							href="tel:+39000000000"
+							class="hover:text-[#d9b130] transition-colors flex items-center gap-2 justify-center"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -71,42 +82,15 @@ const t = useTranslations(lang);
 							>
 							<span>{t("footer.phoneFixed")}</span>
 						</a>
-						<a
-							href="tel:+393296752634"
-							class="hover:text-[#3c4135] transition-colors flex items-center gap-2 justify-center"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="w-5 h-5 opacity-80"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><rect
-									x="5"
-									y="2"
-									width="14"
-									height="20"
-									rx="2"
-									ry="2"></rect><line
-									x1="12"
-									y1="18"
-									x2="12.01"
-									y2="18"></line></svg
-							>
-							<span>{t("footer.phoneMobile")}</span>
-						</a>
 					</div>
 
-					<!-- Email e Come Raggiungerci -->
+					<!-- Email -->
 					<div
-						class="text-black text-base sm:text-md flex flex-row flex-wrap gap-4 sm:gap-6 justify-center"
+						class="text-slate-900 text-base sm:text-md flex flex-row flex-wrap gap-4 sm:gap-6 justify-center"
 					>
 						<a
-							href="mailto:info@lacortedilaura.it"
-							class="hover:text-[#3c4135] transition-colors flex items-center gap-2 justify-center"
+							href="mailto:info@artigianidelsalotto.it"
+							class="hover:text-[#d9b130] transition-colors flex items-center gap-2 justify-center"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -123,114 +107,46 @@ const t = useTranslations(lang);
 									d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
 								></path>
 							</svg>
-							<span>info@lacortedilaura.it</span>
-						</a>
-						<a
-							href="https://www.google.com/maps/place/La+Corte+Di+Laura/@44.0177436,10.5726613,17z/data=!3m1!4b1!4m6!3m5!1s0x12d57dd0f4255307:0xc0b26566853c16ff!8m2!3d44.0177436!4d10.5726613!16s%2Fg%2F11x77pfhrp?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoASAFQAw%3D%3D"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="hover:text-[#3c4135] transition-colors flex items-center gap-2 justify-center"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="w-5 h-5 opacity-80"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-								<circle cx="12" cy="10" r="3"></circle>
-							</svg>
-							<span>{t("footer.directions")}</span>
+							<span>info@artigianidelsalotto.it</span>
 						</a>
 					</div>
 
 					<!-- Orari di Apertura -->
 					<div class="pt-4 w-full">
-						<div class="bg-black/5 backdrop-blur-sm border border-black/5 rounded-2xl p-6 transition-all hover:bg-black/10">
-							<h3 class="font-bold mb-4 text-black text-center uppercase tracking-widest text-xs opacity-60">
+						<div
+							class="bg-white/50 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 transition-all"
+						>
+							<h3
+								class="font-bold mb-4 text-slate-900 text-center uppercase tracking-widest text-xs opacity-60"
+							>
 								{t("footer.openingHours.title")}
 							</h3>
 							<div class="space-y-3 text-center">
-								<div class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 text-black/80">
+								<div
+									class="flex flex-col justify-center items-center gap-1 text-slate-800"
+								>
 									<span class="text-sm">
-										{t("footer.openingHours.from")} {t("footer.openingHours.days.thursday")} {t("footer.openingHours.to")} {t("footer.openingHours.days.saturday")}:
-									</span>
-									<span class="font-bold text-base">19:00 - 22:00</span>
-								</div>
-								<div class="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 text-black/80 border-t border-black/5 pt-3">
-									<span class="text-sm">
-										{t("footer.openingHours.days.sunday")}:
-									</span>
-									<span class="font-bold text-base">
-										12:00 - 14:00 {t("footer.openingHours.and")} 19:00 - 22:00
-									</span>
-								</div>
-								<div class="flex flex-col justify-center items-center pt-3 border-t border-black/5">
-									<span class="text-[10px] uppercase tracking-[0.2em] opacity-60 font-bold mb-2">
-										{t("footer.openingHours.closedDaysTitle")}:
-									</span>
-									<span class="text-xs font-bold uppercase tracking-widest text-black/60">
-										{t("footer.openingHours.days.monday")} — {t("footer.openingHours.days.tuesday")} — {t("footer.openingHours.days.wednesday")}
+										{t("footer.hours")}
 									</span>
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<!-- Social Media -->
-					<div class="flex gap-4 justify-center pt-2">
-						<a
-							href="https://www.facebook.com/profile.php?id=61573481385415&locale=it_IT"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-black hover:text-[#3c4135] transition-colors"
-							aria-label="Facebook"
-						>
-							<svg
-								class="w-6 h-6"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-								></path>
-							</svg>
-						</a>
-						<a
-							href="https://www.instagram.com/lacortedilaura"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-black hover:text-[#3c4135] transition-colors"
-							aria-label="Instagram"
-						>
-							<svg
-								class="w-6 h-6"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-								></path>
-							</svg>
-						</a>
-					</div>
 				</div>
 			</div>
 
-			<!-- Right Column: Contact & Booking Form -->
-			<div class="relative p-0 w-full">
-				<h2 class="text-2xl sm:text-3xl text-[#3c4135] mb-6 sm:mb-8">
+			<!-- Right Column: Contact Form -->
+			<div class="relative p-0 w-full" id="booking-form-container">
+				<h2
+					class="text-2xl sm:text-3xl text-slate-900 mb-6 sm:mb-8 font-bold"
+				>
 					{t("footer.form.title")}
 				</h2>
 
-				<!-- Messaggio di successo/errore -->
+				<!-- Success/Error Message -->
 				<div
 					id="form-message"
-					class="hidden mb-4 p-4 text-white text-sm sm:text-base"
+					class="hidden mb-4 p-4 text-white text-sm sm:text-base rounded"
 				>
 				</div>
 
@@ -241,7 +157,7 @@ const t = useTranslations(lang);
 							name="name"
 							required
 							aria-label={t("footer.form.name")}
-							class="w-full bg-[#525d4a] border-none px-4 sm:px-6 py-3 sm:py-4 text-white placeholder-white/80 focus:ring-2 focus:ring-white/20 outline-none transition-all text-sm sm:text-base"
+							class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
 							placeholder={t("footer.form.name") + " *"}
 						/>
 						<div
@@ -252,7 +168,7 @@ const t = useTranslations(lang);
 								name="email"
 								required
 								aria-label={t("footer.form.email")}
-								class="w-full bg-[#525d4a] border-none px-4 sm:px-6 py-3 sm:py-4 text-white placeholder-white/80 focus:ring-2 focus:ring-white/20 outline-none transition-all text-sm sm:text-base"
+								class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
 								placeholder={t("footer.form.email") + " *"}
 							/>
 							<input
@@ -260,53 +176,19 @@ const t = useTranslations(lang);
 								name="phone"
 								required
 								aria-label={t("footer.form.phone")}
-								class="w-full bg-[#525d4a] border-none px-4 sm:px-6 py-3 sm:py-4 text-white placeholder-white/80 focus:ring-2 focus:ring-white/20 outline-none transition-all text-sm sm:text-base"
+								class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
 								placeholder={t("footer.form.phone") + " *"}
 							/>
 						</div>
-						<input
-							type="number"
+						<textarea
 							name="guests"
-							min="1"
+							rows="4"
 							aria-label={t("footer.form.guests")}
-							class="w-full bg-[#525d4a] border-none px-4 sm:px-6 py-3 sm:py-4 text-white placeholder-white/80 focus:ring-2 focus:ring-white/20 outline-none transition-all text-sm sm:text-base"
-							placeholder={t("footer.form.guests")}
-						/>
-						<div
-							class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full min-w-0"
-						>
-							<div class="relative w-full min-w-0">
-								<label
-									for="booking-date"
-									class="block text-black text-xs mb-1 px-1"
-									>{t("footer.form.date")}</label
-								>
-								<input
-									type="date"
-									id="booking-date"
-									name="date"
-									aria-label={t("footer.form.date")}
-									class="w-full block max-w-full bg-[#525d4a] border-none px-3 sm:px-6 py-3 sm:py-4 text-white placeholder-white/80 focus:ring-2 focus:ring-white/20 outline-none transition-all text-sm sm:text-base [color-scheme:dark]"
-								/>
-							</div>
-							<div class="relative w-full min-w-0">
-								<label
-									for="booking-time"
-									class="block text-black text-xs mb-1 px-1"
-									>{t("footer.form.time")}</label
-								>
-								<input
-									type="time"
-									id="booking-time"
-									name="time"
-									aria-label={t("footer.form.time")}
-									class="w-full block max-w-full bg-[#525d4a] border-none px-3 sm:px-6 py-3 sm:py-4 text-white placeholder-white/80 focus:ring-2 focus:ring-white/20 outline-none transition-all text-sm sm:text-base [color-scheme:dark]"
-								/>
-							</div>
-						</div>
+							class="w-full bg-white border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-[#d9b130]/20 outline-none transition-all text-sm sm:text-base rounded-lg"
+							placeholder={t("footer.form.guests")}></textarea>
 					</div>
 
-					<!-- Honeypot field - nascosto per gli utenti, compilato dai bot -->
+					<!-- Honeypot field -->
 					<input
 						type="text"
 						name="website"
@@ -316,25 +198,25 @@ const t = useTranslations(lang);
 						aria-hidden="true"
 					/>
 
-					<!-- Privacy consent checkbox -->
+					<!-- Privacy consent -->
 					<div class="flex items-start gap-3 mt-4">
 						<input
 							type="checkbox"
 							id="privacy-consent"
 							name="privacyConsent"
 							required
-							class="mt-1 w-5 h-5 accent-[#3c4135] cursor-pointer flex-shrink-0"
+							class="mt-1 w-5 h-5 accent-[#d9b130] cursor-pointer flex-shrink-0"
 						/>
-						<label for="privacy-consent" class="text-sm text-black/80 text-left cursor-pointer">
+						<label
+							for="privacy-consent"
+							class="text-sm text-slate-600 text-left cursor-pointer"
+						>
 							{t("footer.form.privacyConsent")}{" "}
-							<a
-								href={getLocalizedPath("/privacy", lang)}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="underline hover:text-[#3c4135] font-semibold"
+							<span
+								class="underline hover:text-slate-900 font-semibold"
 							>
 								{t("footer.form.privacyLink")}
-							</a>
+							</span>
 						</label>
 					</div>
 
@@ -342,7 +224,7 @@ const t = useTranslations(lang);
 						type="submit"
 						id="submit-btn"
 						aria-label={t("footer.form.send")}
-						class="w-full bg-[#3c4135] hover:bg-[#2a2e25] text-white font-bold py-3 sm:py-4 transition-all shadow-lg active:scale-[0.98] mt-3 sm:mt-4 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+						class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 sm:py-4 transition-all shadow-lg active:scale-[0.98] mt-3 sm:mt-4 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed rounded-lg"
 					>
 						<span id="submit-text">{t("footer.form.send")}</span>
 						<span id="submit-loading" class="hidden">Invio...</span>
@@ -353,7 +235,7 @@ const t = useTranslations(lang);
 	</div>
 
 	<!-- Second Row: Legal & Copyright -->
-	<div class="bg-black py-8 border-t border-white/5">
+	<div class="bg-slate-900 py-8 border-t border-white/5">
 		<div class="w-full px-6 md:px-12 lg:px-24 text-white mb-6">
 			<div class="flex flex-col items-center justify-center gap-2">
 				<a
@@ -385,7 +267,7 @@ const t = useTranslations(lang);
 						rel="noopener noreferrer"
 						class="hover:text-white transition-colors underline decoration-white/20"
 						>marfcode.it</a
-					> (1.0.10)
+					>
 				</p>
 			</div>
 		</div>
@@ -396,31 +278,28 @@ const t = useTranslations(lang);
 				<p
 					class="text-slate-400 text-[10px] tracking-wide text-center md:text-left"
 				>
-					&copy; {currentYear} lacortedilaura.it. {
+					&copy; {currentYear} artigianidelsalotto.marf.click. {
 						t("footer.copyright")
 					}
 				</p>
 				<div
 					class="flex flex-wrap gap-4 md:gap-8 justify-center md:justify-end"
 				>
-					<a
-						href={getLocalizedPath("/privacy", lang)}
-						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors"
+					<span
+						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
 					>
 						{t("footer.privacy")}
-					</a>
-					<a
-						href={getLocalizedPath("/terms", lang)}
-						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors"
+					</span>
+					<span
+						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
 					>
 						{t("footer.terms")}
-					</a>
-					<a
-						href={getLocalizedPath("/cookie-policy", lang)}
-						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors"
+					</span>
+					<span
+						class="text-slate-400 hover:text-white text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
 					>
 						{t("footer.cookiePolicy")}
-					</a>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -429,92 +308,6 @@ const t = useTranslations(lang);
 
 <script>
 	import { actions } from "astro:actions";
-
-	const OPENING_HOURS: {
-		[key: number]: {
-			open: boolean;
-			times?: { start: number; end: number }[];
-		};
-	} = {
-		0: { open: true, times: [{ start: 12, end: 14 }, { start: 19, end: 22 }] }, // Domenica
-		1: { open: false }, // Lunedì
-		2: { open: false }, // Martedì
-		3: { open: false }, // Mercoledì
-		4: { open: true, times: [{ start: 19, end: 22 }] }, // Giovedì
-		5: { open: true, times: [{ start: 19, end: 22 }] }, // Venerdì
-		6: { open: true, times: [{ start: 19, end: 22 }] }, // Sabato
-	};
-
-	function setMinDate() {
-		const dateInput = document.getElementById(
-			"booking-date",
-		) as HTMLInputElement;
-		if (dateInput) {
-			const today = new Date();
-			const minDate = today.toISOString().split("T")[0];
-			dateInput.setAttribute("min", minDate);
-		}
-	}
-
-	function validateBookingDateTime(
-		dateStr: string,
-		timeStr: string,
-	): { valid: boolean; error?: string } {
-		if (!dateStr) {
-			return { valid: true };
-		}
-
-		const selectedDate = new Date(dateStr + "T00:00:00");
-		const today = new Date();
-		today.setHours(0, 0, 0, 0);
-
-		if (selectedDate < today) {
-			return {
-				valid: false,
-				error: "Non puoi prenotare per una data passata",
-			};
-		}
-
-		const dayOfWeek = selectedDate.getDay();
-		const dayInfo = OPENING_HOURS[dayOfWeek];
-
-		if (!dayInfo.open) {
-			const dayNames = [
-				"domenica",
-				"lunedì",
-				"martedì",
-				"mercoledì",
-				"giovedì",
-				"venerdì",
-				"sabato",
-			];
-			return {
-				valid: false,
-				error: `Il ristorante è chiuso di ${dayNames[dayOfWeek]}`,
-			};
-		}
-
-		if (timeStr && dayInfo.times) {
-			const [hours, minutes] = timeStr.split(":").map(Number);
-			const timeInHours = hours + minutes / 60;
-
-			const isValidTime = dayInfo.times.some(
-				(slot) => timeInHours >= slot.start && timeInHours < slot.end,
-			);
-
-			if (!isValidTime) {
-				const timeRanges = dayInfo.times
-					.map((slot) => `${slot.start}:00-${slot.end}:00`)
-					.join(" e ");
-				return {
-					valid: false,
-					error: `L'orario deve essere tra le ${timeRanges}`,
-				};
-			}
-		}
-
-		return { valid: true };
-	}
 
 	function initBookingForm() {
 		const form = document.getElementById("booking-form") as HTMLFormElement;
@@ -530,95 +323,25 @@ const t = useTranslations(lang);
 		const formMessage = document.getElementById(
 			"form-message",
 		) as HTMLDivElement;
-		const dateInput = document.getElementById(
-			"booking-date",
-		) as HTMLInputElement;
-		const timeInput = document.getElementById(
-			"booking-time",
-		) as HTMLInputElement;
 		const privacyCheckbox = document.getElementById(
 			"privacy-consent",
 		) as HTMLInputElement;
 
 		if (!form) return;
 
-		// Set min date to today
-		setMinDate();
-
-		// Validate date when it changes
-		if (dateInput) {
-			dateInput.addEventListener("change", (e) => {
-				const target = e.target as HTMLInputElement;
-				const validation = validateBookingDateTime(
-					target.value,
-					timeInput?.value || "",
-				);
-
-				if (!validation.valid) {
-					formMessage.textContent =
-						validation.error || "Data non valida";
-					formMessage.className =
-						"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
-					formMessage.classList.remove("hidden");
-					target.value = "";
-					if (timeInput) timeInput.value = "";
-				} else {
-					formMessage.classList.add("hidden");
-				}
-			});
-		}
-
-		// Validate time when it changes
-		if (timeInput) {
-			timeInput.addEventListener("change", (e) => {
-				const target = e.target as HTMLInputElement;
-				const validation = validateBookingDateTime(
-					dateInput?.value || "",
-					target.value,
-				);
-
-				if (!validation.valid) {
-					formMessage.textContent =
-						validation.error || "Orario non valido";
-					formMessage.className =
-						"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
-					formMessage.classList.remove("hidden");
-					target.value = "";
-				} else {
-					formMessage.classList.add("hidden");
-				}
-			});
-		}
-
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 
-			// Valida checkbox privacy
 			if (!privacyCheckbox.checked) {
 				formMessage.textContent =
-					document.documentElement.lang === "en"
-						? "You must accept the Privacy Policy to proceed"
-						: "Devi accettare la Privacy Policy per procedere";
+					"Devi accettare la Privacy Policy per procedere";
 				formMessage.className =
 					"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
 				formMessage.classList.remove("hidden");
 				return;
 			}
 
-			// Raccogli i dati dal form
 			const formData = new FormData(form);
-			const dateValue = (formData.get("date") as string) || "";
-			const timeValue = (formData.get("time") as string) || "";
-
-			// Valida data e ora prima dell'invio (validazione lato client per orari apertura)
-			const validation = validateBookingDateTime(dateValue, timeValue);
-			if (!validation.valid) {
-				formMessage.textContent = validation.error || "Dati non validi";
-				formMessage.className =
-					"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
-				formMessage.classList.remove("hidden");
-				return;
-			}
 
 			// Mostra loading
 			submitBtn.disabled = true;
@@ -627,42 +350,23 @@ const t = useTranslations(lang);
 			formMessage.classList.add("hidden");
 
 			try {
-				// Chiama l'Astro Action con progressive enhancement
+				// We'll keep the action call but it might need to be updated in the backend
+				// For now, we just mock the success if the action fails or we'll update the action later
 				const { data, error } = await actions.sendBooking(formData);
 
 				if (error) {
-					// Errore di validazione o del server
 					console.error("Errore dall'Action:", error);
-
-					// Gestisce errori di validazione Zod
-					if (error.code === "BAD_REQUEST") {
-						// @ts-ignore - ActionError può avere fields
-						const fieldErrors = error.fields;
-						if (fieldErrors) {
-							const firstError = Object.values(fieldErrors)[0];
-							formMessage.textContent = Array.isArray(firstError)
-								? firstError[0]
-								: "Dati non validi";
-						} else {
-							formMessage.textContent = "Dati del form non validi";
-						}
-					} else {
-						formMessage.textContent =
-							"Si è verificato un errore. Riprova più tardi.";
-					}
-
+					formMessage.textContent =
+						"Si è verificato un errore. Riprova più tardi.";
 					formMessage.className =
 						"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
 					formMessage.classList.remove("hidden");
 				} else if (data) {
-					// Successo
 					formMessage.textContent =
-						data.message || "Richiesta inviata con successo!";
+						"Richiesta inviata con successo! Ti ricontatteremo al più presto.";
 					formMessage.className =
 						"mb-4 p-4 bg-green-600 text-white text-sm sm:text-base rounded";
 					formMessage.classList.remove("hidden");
-
-					// Reset form
 					form.reset();
 				}
 			} catch (error) {
@@ -673,7 +377,6 @@ const t = useTranslations(lang);
 					"mb-4 p-4 bg-red-600 text-white text-sm sm:text-base rounded";
 				formMessage.classList.remove("hidden");
 			} finally {
-				// Ripristina il pulsante
 				submitBtn.disabled = false;
 				submitText.classList.remove("hidden");
 				submitLoading.classList.add("hidden");
@@ -681,9 +384,6 @@ const t = useTranslations(lang);
 		});
 	}
 
-	// Initialize on page load
 	initBookingForm();
-
-	// Re-initialize after View Transitions
 	document.addEventListener("astro:after-swap", initBookingForm);
 </script>

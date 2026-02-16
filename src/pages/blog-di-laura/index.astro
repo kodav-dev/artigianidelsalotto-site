@@ -1,8 +1,0 @@
----
-import BlogIndex from '@/components/pages/BlogIndex.astro';
-import { getCollection } from 'astro:content';
-
-const posts = await getCollection('blog', ({ data }) => data.lang === 'it');
----
-
-<BlogIndex posts={posts} lang="it" />
