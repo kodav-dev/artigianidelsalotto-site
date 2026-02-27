@@ -4,12 +4,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { useTranslations, getLocalizedPath } from "@/i18n/utils";
 import { getCategories, getCategoryBySlug, getProductsByCategory, getProduct } from "@/lib/collections";
 
-export function getStaticPaths() {
-	const categories = getCategories();
+export async function getStaticPaths() {
+	const categories = await getCategories();
 	const paths: { params: { category: string; slug: string } }[] = [];
 
 	for (const cat of categories) {
-		const products = getProductsByCategory(cat.slug);
+		const products = await getProductsByCategory(cat.slug);
 		for (const product of products) {
 			paths.push({ params: { category: cat.slug, slug: product.slug } });
 		}
@@ -21,8 +21,8 @@ export function getStaticPaths() {
 const { category, slug } = Astro.params;
 const lang = "en";
 const t = useTranslations(lang);
-const cat = getCategoryBySlug(category!);
-const product = getProduct(category!, slug!);
+const cat = await getCategoryBySlug(category!);
+const product = await getProduct(category!, slug!);
 
 if (!cat || !product) return Astro.redirect("/404");
 ---
@@ -30,7 +30,7 @@ if (!cat || !product) return Astro.redirect("/404");
 <BaseLayout title={`${product.name[lang]} - ${cat.name[lang]}`} description={product.description[lang]}>
 	<!-- Full-width Hero -->
 	<section class="relative w-full h-screen min-h-[600px]">
-		<Image
+		<img
 			src={product.heroImage}
 			alt={product.name[lang]}
 			class="absolute inset-0 w-full h-full object-cover"
@@ -66,9 +66,7 @@ if (!cat || !product) return Astro.redirect("/404");
 				<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
 					{product.name[lang]}
 				</h2>
-				<p class="text-lg text-slate-600 leading-relaxed">
-					{product.description[lang]}
-				</p>
+				<p class="text-lg text-slate-600 leading-relaxed" set:html={product.description[lang]} />
 			</div>
 
 			<!-- Detail Gallery -->
@@ -78,10 +76,11 @@ if (!cat || !product) return Astro.redirect("/404");
 					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{product.detailImages.map((img, i) => (
 							<div class="aspect-[4/3] overflow-hidden">
-								<Image
+								<img
 									src={img}
 									alt={`${product.name[lang]} - ${t("collections.details")} ${i + 1}`}
 									class="w-full h-full object-cover"
+									loading="lazy"
 								/>
 							</div>
 						))}

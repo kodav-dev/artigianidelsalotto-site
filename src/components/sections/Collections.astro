@@ -10,7 +10,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const categories = getCategories();
+const categories = await getCategories();
 ---
 
 <section id="collections" class="bg-black py-32">
@@ -31,10 +31,11 @@ const categories = getCategories();
 					class="group cursor-pointer block"
 				>
 					<div class="relative aspect-[4/3] overflow-hidden mb-6">
-						<Image
+						<img
 							src={cat.image}
 							alt={cat.name[lang]}
 							class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+							loading="lazy"
 						/>
 						<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
 					</div>
