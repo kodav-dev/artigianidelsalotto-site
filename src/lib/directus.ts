@@ -1,7 +1,7 @@
 import { createDirectus, rest, staticToken } from '@directus/sdk';
 
-const url = import.meta.env.DIRECTUS_URL;
-const token = import.meta.env.DIRECTUS_TOKEN;
+const url = import.meta.env.DIRECTUS_URL || process.env.DIRECTUS_URL;
+const token = import.meta.env.DIRECTUS_TOKEN || process.env.DIRECTUS_TOKEN;
 
 const isValidUrl = (urlString: string | undefined): boolean => {
   if (!urlString || urlString.startsWith('op://')) return false;

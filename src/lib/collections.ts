@@ -20,8 +20,8 @@ export interface Product {
   detailImages: string[]; // Array of strings (URLs)
 }
 
-const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "";
-const DIRECTUS_TOKEN = import.meta.env.DIRECTUS_TOKEN || "";
+const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || process.env.DIRECTUS_URL || "";
+const DIRECTUS_TOKEN = import.meta.env.DIRECTUS_TOKEN || process.env.DIRECTUS_TOKEN || "";
 
 function getImageUrl(imageId: string | null): string {
   if (!imageId) return "";
@@ -41,7 +41,7 @@ export async function getCategories(): Promise<Category[]> {
   try {
     const response = await directus.request(
       readItems("categories", {
-        fields: ["id", "slug", "name", "image", { translations: ["languages_code", "name"] }],
+        fields: ["id", "slug", "image", { translations: ["languages_code", "name"] }],
       })
     );
 
