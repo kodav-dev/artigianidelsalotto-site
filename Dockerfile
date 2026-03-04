@@ -6,6 +6,13 @@ RUN corepack enable
 
 WORKDIR /app
 
+# Enable environment variables during build for static site generation
+ARG DIRECTUS_URL
+ARG DIRECTUS_TOKEN
+
+ENV DIRECTUS_URL=$DIRECTUS_URL
+ENV DIRECTUS_TOKEN=$DIRECTUS_TOKEN
+
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
