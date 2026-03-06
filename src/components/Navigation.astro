@@ -183,6 +183,92 @@ const navItems = [
 		);
 	}
 
+	function initScrollSpy() {
+		const navLinks = document.querySelectorAll<HTMLAnchorElement>("#main-nav a[href^='#']");
+		const sections = new Map<string, Element>();
+		const activeClass = "text-slate-900";
+		const inactiveClass = "text-slate-400";
+
+		navLinks.forEach((link) => {
+			const id = link.getAttribute("href")?.substring(1);
+			if (id) {
+				const section = document.getElementById(id);
+				if (section) sections.set(id, section);
+			}
+		});
+
+		if (sections.size === 0) return;
+
+		// Also track the home link to deactivate it when a section is active
+		const homeLink = document.querySelector<HTMLAnchorElement>("#main-nav a:not([href^='#'])");
+
+		function setActive(activeId: string | null) {
+			navLinks.forEach((link) => {
+				const id = link.getAttribute("href")?.substring(1);
+				if (id === activeId) {
+					link.classList.add(activeClass);
+					link.classList.remove(inactiveClass);
+				} else {
+					link.classList.remove(activeClass);
+					link.classList.add(inactiveClass);
+				}
+			});
+			// Toggle home link
+			if (homeLink) {
+				if (activeId) {
+					homeLink.classList.remove(activeClass);
+					homeLink.classList.add(inactiveClass);
+				} else {
+					homeLink.classList.add(activeClass);
+					homeLink.classList.remove(inactiveClass);
+				}
+			}
+		}
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				let topVisible: { id: string; top: number } | null = null;
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const rect = entry.boundingClientRect;
+						if (!topVisible || rect.top < topVisible.top) {
+							topVisible = { id: entry.target.id, top: rect.top };
+						}
+					}
+				});
+				if (topVisible) {
+					setActive((topVisible as { id: string }).id);
+				} else {
+					// Check if any section is still visible
+					let anyVisible = false;
+					sections.forEach((section, id) => {
+						const rect = section.getBoundingClientRect();
+						if (rect.top < window.innerHeight && rect.bottom > 0) {
+							anyVisible = true;
+							setActive(id);
+						}
+					});
+					if (!anyVisible) setActive(null);
+				}
+			},
+			{ threshold: 0.2 },
+		);
+
+		sections.forEach((section) => observer.observe(section));
+
+		// Also handle click to immediately set active
+		navLinks.forEach((link) => {
+			link.addEventListener("click", () => {
+				const id = link.getAttribute("href")?.substring(1);
+				if (id) setActive(id);
+			});
+		});
+	}
+
 	initNavigation();
-	document.addEventListener("astro:after-swap", initNavigation);
+	initScrollSpy();
+	document.addEventListener("astro:after-swap", () => {
+		initNavigation();
+		initScrollSpy();
+	});
 </script>
