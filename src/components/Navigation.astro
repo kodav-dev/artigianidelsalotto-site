@@ -21,12 +21,13 @@ const { currentPath = "", lang: propLang, itPath, enPath } = Astro.props;
 const lang = propLang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const homePath = getLocalizedPath("/", lang);
 const navItems = [
-	{ href: getLocalizedPath("/", lang), label: t("nav.home") },
-	{ href: "#quality", label: t("nav.about") },
-	{ href: "#collections", label: t("nav.collections") },
-	{ href: "#hero", label: t("nav.production") },
-	{ href: "#how-it-works", label: t("nav.howItWorks") },
+	{ href: homePath, label: t("nav.home") },
+	{ href: `${homePath}#quality`, label: t("nav.about") },
+	{ href: `${homePath}#collections`, label: t("nav.collections") },
+	{ href: `${homePath}#hero`, label: t("nav.production") },
+	{ href: `${homePath}#how-it-works`, label: t("nav.howItWorks") },
 ];
 ---
 
@@ -184,27 +185,30 @@ const navItems = [
 	}
 
 	function initScrollSpy() {
-		const navLinks = document.querySelectorAll<HTMLAnchorElement>("#main-nav a[href^='#']");
+		// Select nav links that have a hash fragment (e.g. /it/#quality)
+		const allNavLinks = document.querySelectorAll<HTMLAnchorElement>("#main-nav .hidden.lg\\:flex a");
+		const navLinks: HTMLAnchorElement[] = [];
 		const sections = new Map<string, Element>();
 		const activeClass = "text-slate-900";
 		const inactiveClass = "text-slate-400";
+		let homeLink: HTMLAnchorElement | null = null;
 
-		navLinks.forEach((link) => {
-			const id = link.getAttribute("href")?.substring(1);
-			if (id) {
+		allNavLinks.forEach((link) => {
+			if (link.hash) {
+				navLinks.push(link);
+				const id = link.hash.substring(1);
 				const section = document.getElementById(id);
 				if (section) sections.set(id, section);
+			} else {
+				homeLink = link;
 			}
 		});
 
 		if (sections.size === 0) return;
 
-		// Also track the home link to deactivate it when a section is active
-		const homeLink = document.querySelector<HTMLAnchorElement>("#main-nav a:not([href^='#'])");
-
 		function setActive(activeId: string | null) {
 			navLinks.forEach((link) => {
-				const id = link.getAttribute("href")?.substring(1);
+				const id = link.hash.substring(1);
 				if (id === activeId) {
 					link.classList.add(activeClass);
 					link.classList.remove(inactiveClass);
@@ -213,7 +217,6 @@ const navItems = [
 					link.classList.add(inactiveClass);
 				}
 			});
-			// Toggle home link
 			if (homeLink) {
 				if (activeId) {
 					homeLink.classList.remove(activeClass);
@@ -239,7 +242,6 @@ const navItems = [
 				if (topVisible) {
 					setActive((topVisible as { id: string }).id);
 				} else {
-					// Check if any section is still visible
 					let anyVisible = false;
 					sections.forEach((section, id) => {
 						const rect = section.getBoundingClientRect();
@@ -256,10 +258,9 @@ const navItems = [
 
 		sections.forEach((section) => observer.observe(section));
 
-		// Also handle click to immediately set active
 		navLinks.forEach((link) => {
 			link.addEventListener("click", () => {
-				const id = link.getAttribute("href")?.substring(1);
+				const id = link.hash.substring(1);
 				if (id) setActive(id);
 			});
 		});
