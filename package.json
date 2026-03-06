@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "op run --env-file=.env.1password -- astro dev",
+    "dev:wsl": "op.exe run --env-file=.env.1password -- wsl npx astro dev",
     "build": "astro build",
     "build:op": "op run --env-file=.env.1password -- astro build",
     "preview": "astro preview",
@@ -17,7 +18,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.17.1",
+    "astro": "^5.18.0",
     "astro-seo": "^0.8.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
